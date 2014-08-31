@@ -40,11 +40,6 @@
         My.Computer.FileSystem.WriteAllText(FileAddress, TextToWrite, DeletePerious)
     End Sub
 
-    Public Sub TransformToScreenAxises(Axises As Point)
-        Dim PointToReturn As Point
-        PointToReturn.X = 
-    End Sub
-
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
         If InHome = True Then
             If MouseOnSmallStones = True Then
@@ -241,7 +236,7 @@
         If InHome = True Then
             If ItemClicked = False Then
                 If MouseOnSmallStones = True Then
-                    If 910 > MouseX And MouseX > 860 And 835 > MouseY And MouseY > 785 Then
+                    If 910 > e.X And e.X > 860 And 835 > e.Y And e.Y > 785 Then
                         ItemClicked = True
                         ClickedItemName = "SmallStones"
                         Me.Refresh()
@@ -265,7 +260,7 @@
                 End If
             End If
         ElseIf StartScreen = True Then
-            If 1007 > MouseX And MouseX > 607 And 380 > MouseY And MouseY > 330 Then
+            If 800 > e.X And e.X > 400 And 300 > e.Y And e.Y > 250 Then
                 PlayStarting = True
                 StartScreen = False
             End If
@@ -380,9 +375,7 @@
     Private Sub Form1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
         If GettingWorldNameTextboxClicked = True Then
             Dim AllowedChars As String = "aAbBcCdDeFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789 " & vbBack
-            If AllowedChars.IndexOf(e.KeyChar) = -1 Then
-                e.Handled = True
-            Else
+            If AllowedChars.ToArray.Contains(e.KeyChar) = True Then
                 If GettingWorldNameTextboxText = "" Then
                     GettingWorldNameTextboxText = GettingWorldNameTextboxText & e.KeyChar
                 Else
