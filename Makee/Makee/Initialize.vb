@@ -17,9 +17,14 @@
     Class Paint
         Public Shared Sub Paint(e As PaintEventArgs)
             If Variables.StartScreen = True Then
-                e.Graphics.FillRectangle(Brushes.Black, 400, 250, 400, 50)
-                e.Graphics.DrawString("Play", Form1.Font3, Brushes.White, 570, 260)
-                e.Graphics.DrawString("Makee", Form1.Font4, Brushes.Black, 485, 100)
+                Form1.MinimumSize = New Size(800, 700)
+                Dim a As Integer = Math.Round((Form1.ClientSize.Width - 400) / 2)
+                Dim b As Integer = Math.Round((Form1.ClientSize.Height - 50) / 3)
+                e.Graphics.FillRectangle(Brushes.Black, a, b, 400, 50)
+                e.Graphics.DrawString("Play", Form1.Font3, Brushes.White, a + 170, b + 10)
+                a = Math.Round((Form1.ClientSize.Width - 230) / 2)
+                b = Math.Round((Form1.ClientSize.Height - 50) / 6)
+                e.Graphics.DrawString("Makee", Form1.Font4, Brushes.Black, a, b)
             ElseIf Variables.PlayStarting Then
                 e.Graphics.DrawString("Load The World", Form1.Font1, Brushes.Black, 420, 20)
                 If World1Exist = True Then

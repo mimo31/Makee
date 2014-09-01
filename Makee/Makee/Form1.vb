@@ -112,4 +112,9 @@
             Initialize.Keys.KeyUp(e)
         End If
     End Sub
+
+    Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        Me.Width = My.Computer.Screen.Bounds.Width
+        Me.Height = My.Computer.Screen.Bounds.Height
+    End Sub
 End Class
