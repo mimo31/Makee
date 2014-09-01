@@ -8,7 +8,6 @@
     Dim World7Exist As Boolean
     Dim World8Exist As Boolean
     Dim World9Exist As Boolean
-    Dim GameSlotSelected As Integer
     Dim GettingWorldNameTextboxFull As Boolean
     Dim GettingWorldNameTextboxEmpty As Boolean
     Dim GettingWorldNameTextboxClicked As Boolean
@@ -198,7 +197,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        GameSlotSelected = 1
+                        Variables.GameSlotSelected = 1
                     End If
                 End If
                 If 808 > e.X And e.X > 708 And 380 > e.Y And e.Y > 280 Then
@@ -208,7 +207,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        GameSlotSelected = 2
+                        Variables.GameSlotSelected = 2
                     End If
                 End If
                 If 1108 > e.X And e.X > 1008 And 380 > e.Y And e.Y > 280 Then
@@ -218,7 +217,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        GameSlotSelected = 3
+                        Variables.GameSlotSelected = 3
                     End If
                 End If
                 If 508 > e.X And e.X > 408 And 580 > e.Y And e.Y > 480 Then
@@ -228,7 +227,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        GameSlotSelected = 4
+                        Variables.GameSlotSelected = 4
                     End If
                 End If
                 If 808 > e.X And e.X > 708 And 580 > e.Y And e.Y > 480 Then
@@ -238,7 +237,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        GameSlotSelected = 5
+                        Variables.GameSlotSelected = 5
                     End If
                 End If
                 If 1108 > e.X And e.X > 1008 And 580 > e.Y And e.Y > 480 Then
@@ -248,7 +247,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        GameSlotSelected = 6
+                        Variables.GameSlotSelected = 6
                     End If
                 End If
                 If 508 > e.X And e.X > 408 And 780 > e.Y And e.Y > 680 Then
@@ -258,7 +257,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        GameSlotSelected = 7
+                        Variables.GameSlotSelected = 7
                     End If
                 End If
                 If 808 > e.X And e.X > 708 And 780 > e.Y And e.Y > 680 Then
@@ -268,7 +267,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        GameSlotSelected = 8
+                        Variables.GameSlotSelected = 8
                     End If
                 End If
                 If 1108 > e.X And e.X > 1008 And 780 > e.Y And e.Y > 680 Then
@@ -278,7 +277,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        GameSlotSelected = 9
+                        Variables.GameSlotSelected = 9
                     End If
                 End If
             Else
@@ -288,7 +287,7 @@
                     If GettingWorldNameTextboxText = "" Then
                         GettingWorldNameTextboxEmpty = True
                     Else
-                        Functions.SuperWrite("C:\Makee\SavedGames\Game" & GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
+                        Functions.SuperWrite("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
                         Variables.GettingWorldName = False
                         Variables.InHome = True
                     End If

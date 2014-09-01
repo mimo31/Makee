@@ -5,4 +5,5 @@ Public Class Variables
     Public Shared GettingWorldName As Boolean
     Public Shared InHome As Boolean
     Public Shared InMine As Boolean
+    Public Shared GameSlotSelected As Integer
 End Class
