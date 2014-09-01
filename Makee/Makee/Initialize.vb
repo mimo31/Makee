@@ -9,6 +9,11 @@
     Dim World8Exist As Boolean
     Dim World9Exist As Boolean
     Dim GameSlotSelected As Integer
+    Dim GettingWorldNameTextboxFull As Boolean
+    Dim GettingWorldNameTextboxEmpty As Boolean
+    Dim GettingWorldNameTextboxClicked As Boolean
+    Dim GettingWorldNameTextboxText As String
+
     Class Paint
         Public Shared Sub Paint(e As PaintEventArgs)
             If Variables.StartScreen = True Then
@@ -108,7 +113,21 @@
                     e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, 810, 660)
                 End If
             Else
-
+                e.Graphics.DrawString("Write name for you world.", Form1.Font3, Brushes.Black, 300, 300)
+                e.Graphics.DrawRectangle(Form1.Pen1, 350, 350, 350, 50)
+                e.Graphics.DrawRectangle(Form1.Pen1, 650, 420, 100, 50)
+                e.Graphics.DrawString("OK", Form1.Font1, Brushes.Black, 663, 423)
+                If GettingWorldNameTextboxClicked = False Then
+                    e.Graphics.FillRectangle(Brushes.Gray, 350, 350, 350, 50)
+                    e.Graphics.DrawString(GettingWorldNameTextboxText, Form1.Font3, Brushes.Green, 360, 357)
+                Else
+                    e.Graphics.DrawString(GettingWorldNameTextboxText, Form1.Font3, Brushes.Green, 360, 357)
+                End If
+                If GettingWorldNameTextboxFull = True Then
+                    e.Graphics.DrawString("Maximum legth is 10 symbols.", Form1.Font3, Brushes.Red, 500, 357)
+                ElseIf GettingWorldNameTextboxEmpty = True Then
+                    e.Graphics.DrawString("You must type name for you world.", Form1.Font3, Brushes.Red, 500, 357)
+                End If
             End If
         End Sub
     End Class
@@ -237,7 +256,48 @@
                     End If
                 End If
             Else
+                If 905 > e.X And e.X > 555 And 478 > e.Y And e.Y > 428 Then
+                    GettingWorldNameTextboxClicked = True
+                ElseIf 955 > e.X And e.X > 855 And 547 > e.Y And e.Y > 497 Then
+                    If GettingWorldNameTextboxText = "" Then
+                        GettingWorldNameTextboxEmpty = True
+                    Else
+                        Functions.SuperWrite("C:\Makee\SavedGames\Game" & GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
+                        Variables.GettingWorldName = False
+                        Variables.InHome = True
+                    End If
+                Else
+                    GettingWorldNameTextboxClicked = False
+                End If
+            End If
+        End Sub
+    End Class
 
+    Class Keys
+        Public Shared Sub KeyUp(e As KeyPressEventArgs)
+            If GettingWorldNameTextboxClicked = True Then
+                Dim AllowedChars As String = "aAbBcCdDeFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789 " & vbBack
+                If AllowedChars.ToArray.Contains(e.KeyChar) = True Then
+                    If GettingWorldNameTextboxText = "" Then
+                        GettingWorldNameTextboxText = GettingWorldNameTextboxText & e.KeyChar
+                    Else
+                        If GettingWorldNameTextboxText.Length = 10 Then
+                            If e.KeyChar = vbBack Then
+                                GettingWorldNameTextboxText = GettingWorldNameTextboxText.Remove(GettingWorldNameTextboxText.Length - 1)
+                                GettingWorldNameTextboxFull = False
+                            Else
+                                GettingWorldNameTextboxFull = True
+                            End If
+                        Else
+                            If e.KeyChar = vbBack Then
+                                GettingWorldNameTextboxText = GettingWorldNameTextboxText.Remove(GettingWorldNameTextboxText.Length - 1)
+                            Else
+                                GettingWorldNameTextboxText = GettingWorldNameTextboxText & e.KeyChar
+                            End If
+                        End If
+                    End If
+                    Form1.Refresh()
+                End If
             End If
         End Sub
     End Class

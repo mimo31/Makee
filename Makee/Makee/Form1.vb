@@ -2,13 +2,6 @@
     Dim MouseOnSmallStones As Boolean
     Dim ItemClicked As Boolean
     Dim ClickedItemName As String
-    Dim GettingWorldNameTextboxFull As Boolean
-    Dim GettingWorldNameTextboxEmpty As Boolean
-    Dim GettingWorldNameTextboxClicked As Boolean
-    Dim GettingWorldNameTextboxText As String
-    Dim GameSlotSelected As Integer
-    Dim MouseX As Integer
-    Dim MouseY As Integer
     Public Font1 As New System.Drawing.Font(Font.Bold, 30)
     Public Font2 As New System.Drawing.Font(Font.Bold, 10)
     Public Font3 As New System.Drawing.Font(Font.Bold, 20)
@@ -45,22 +38,6 @@
             End If
         ElseIf Variables.InMine = True Then
             e.Graphics.DrawImage(My.Resources.Mine, 170, 100)
-        ElseIf Variables.GettingWorldName = True Then
-            e.Graphics.DrawString("Write name for you world.", Font3, Brushes.Black, 300, 300)
-            e.Graphics.DrawRectangle(Pen1, 350, 350, 350, 50)
-            e.Graphics.DrawRectangle(Pen1, 650, 420, 100, 50)
-            e.Graphics.DrawString("OK", Font1, Brushes.Black, 663, 423)
-            If GettingWorldNameTextboxClicked = False Then
-                e.Graphics.FillRectangle(Brushes.Gray, 350, 350, 350, 50)
-                e.Graphics.DrawString(GettingWorldNameTextboxText, Font3, Brushes.Green, 360, 357)
-            Else
-                e.Graphics.DrawString(GettingWorldNameTextboxText, Font3, Brushes.Green, 360, 357)
-            End If
-            If GettingWorldNameTextboxFull = True Then
-                e.Graphics.DrawString("Maximum legth is 10 symbols.", Font3, Brushes.Red, 500, 357)
-            ElseIf GettingWorldNameTextboxEmpty = True Then
-                e.Graphics.DrawString("You must type name for you world.", Font3, Brushes.Red, 500, 357)
-            End If
         End If
     End Sub
 
@@ -96,8 +73,6 @@
     End Sub
 
     Private Sub Form1_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick
-        MouseX = MousePosition.X
-        MouseY = MousePosition.Y
         If Variables.StartScreen = True Or Variables.PlayStarting = True Or Variables.GettingWorldName = True Then
             Initialize.Click.Click(e)
         End If
@@ -111,64 +86,29 @@
                         Me.Refresh()
                     End If
                 Else
-                    If 900 > MouseX And MouseX > 870 And 825 > MouseY And MouseY > 795 Then
+                    If 900 > e.X And e.X > 870 And 825 > e.Y And e.Y > 795 Then
                         ItemClicked = True
                         ClickedItemName = "SmallStones"
                         Me.Refresh()
                     End If
                 End If
             Else
-                If 1010 > MouseX And MouseX > 990 And 400 > MouseY And MouseY > 380 Then
+                If 1010 > e.X And e.X > 990 And 400 > e.Y And e.Y > 380 Then
                     ItemClicked = False
                     Me.Refresh()
-                ElseIf 988 > MouseX And MouseX > 928 And 560 > MouseY And MouseY > 530 Then
+                ElseIf 988 > e.X And e.X > 928 And 560 > e.Y And e.Y > 530 Then
                     Variables.InHome = False
                     Variables.InMine = True
                     ItemClicked = False
                     Me.Refresh()
                 End If
             End If
-        ElseIf Variables.GettingWorldName = True Then
-            If 905 > MouseX And MouseX > 555 And 478 > MouseY And MouseY > 428 Then
-                GettingWorldNameTextboxClicked = True
-            ElseIf 955 > MouseX And MouseX > 855 And 547 > MouseY And MouseY > 497 Then
-                If GettingWorldNameTextboxText = "" Then
-                    GettingWorldNameTextboxEmpty = True
-                Else
-                    Functions.SuperWrite("C:\Makee\SavedGames\Game" & GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
-                    Variables.GettingWorldName = False
-                    Variables.InHome = True
-                End If
-            Else
-                GettingWorldNameTextboxClicked = False
-            End If
         End If
     End Sub
 
     Private Sub Form1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
-        If GettingWorldNameTextboxClicked = True Then
-            Dim AllowedChars As String = "aAbBcCdDeFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789 " & vbBack
-            If AllowedChars.ToArray.Contains(e.KeyChar) = True Then
-                If GettingWorldNameTextboxText = "" Then
-                    GettingWorldNameTextboxText = GettingWorldNameTextboxText & e.KeyChar
-                Else
-                    If GettingWorldNameTextboxText.Length = 10 Then
-                        If e.KeyChar = vbBack Then
-                            GettingWorldNameTextboxText = GettingWorldNameTextboxText.Remove(GettingWorldNameTextboxText.Length - 1)
-                            GettingWorldNameTextboxFull = False
-                        Else
-                            GettingWorldNameTextboxFull = True
-                        End If
-                    Else
-                        If e.KeyChar = vbBack Then
-                            GettingWorldNameTextboxText = GettingWorldNameTextboxText.Remove(GettingWorldNameTextboxText.Length - 1)
-                        Else
-                            GettingWorldNameTextboxText = GettingWorldNameTextboxText & e.KeyChar
-                        End If
-                    End If
-                End If
-                Me.Refresh()
-            End If
+        If Variables.GettingWorldName = True Then
+            Initialize.Keys.KeyUp(e)
         End If
     End Sub
 End Class
