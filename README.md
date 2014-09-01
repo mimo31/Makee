@@ -1,3 +1,5 @@
 Makee
 =====
-MAKEE - Make Everithing
+MAKEE - Make Everything
+
+MAKEE will be game.
