@@ -13,20 +13,20 @@
     Dim GettingWorldNameTextboxEmpty As Boolean
     Dim GettingWorldNameTextboxClicked As Boolean
     Dim GettingWorldNameTextboxText As String
-    Dim MovableObjectsWidth As Integer
-    Dim MovableObjectsHeight As Integer
+    Dim MovableObjectsX As Integer
+    Dim MovableObjectsY As Integer
 
     Class Paint
         Public Shared Sub Paint(e As PaintEventArgs)
             If Variables.StartScreen = True Then
                 Form1.MinimumSize = New Size(800, 700)
-                MovableObjectsWidth = Math.Round((Form1.ClientSize.Width - 400) / 2)
-                MovableObjectsHeight = Math.Round((Form1.ClientSize.Height - 50) / 3)
-                e.Graphics.FillRectangle(Brushes.Black, MovableObjectsWidth, MovableObjectsHeight, 400, 50)
-                e.Graphics.DrawString("Play", Form1.Font3, Brushes.White, MovableObjectsWidth + 170, MovableObjectsHeight + 10)
-                MovableObjectsWidth = Math.Round((Form1.ClientSize.Width - 230) / 2)
-                MovableObjectsHeight = Math.Round((Form1.ClientSize.Height - 50) / 6)
-                e.Graphics.DrawString("Makee", Form1.Font4, Brushes.Black, MovableObjectsWidth, MovableObjectsHeight)
+                MovableObjectsX = Math.Round((Form1.ClientSize.Width - 400) / 2)
+                MovableObjectsY = Math.Round((Form1.ClientSize.Height - 50) / 3)
+                e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 400, 50)
+                e.Graphics.DrawString("Play", Form1.Font3, Brushes.White, MovableObjectsX + 170, MovableObjectsY + 10)
+                MovableObjectsX = Math.Round((Form1.ClientSize.Width - 230) / 2)
+                MovableObjectsY = Math.Round((Form1.ClientSize.Height - 50) / 6)
+                e.Graphics.DrawString("Makee", Form1.Font4, Brushes.Black, MovableObjectsX, MovableObjectsY)
             ElseIf Variables.PlayStarting Then
                 e.Graphics.DrawString("Load The World", Form1.Font1, Brushes.Black, 420, 20)
                 If World1Exist = True Then
@@ -167,7 +167,7 @@
     Class Click
         Public Shared Sub Click(e As MouseEventArgs)
             If Variables.StartScreen = True Then
-                If Math.Round((Form1.ClientSize.Width - 400) / 2) + 400 > e.X And e.X > Math.Round((Form1.ClientSize.Width - 400) / 2) And Math.Round((Form1.ClientSize.Height - 50) / 3) + 50 > e.Y And e.Y > Math.Round((Form1.ClientSize.Height - 50) / 3) Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 400) / 2), Math.Round((Form1.ClientSize.Height - 50) / 3), 400, 50) Then
                     Variables.PlayStarting = True
                     Variables.StartScreen = False
                 End If
