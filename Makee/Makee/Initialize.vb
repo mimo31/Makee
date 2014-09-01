@@ -33,110 +33,110 @@
                 MovableObjectsX = Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50
                 MovableObjectsY = Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100
                 If World1Exist = True Then
-                    e.Graphics.FillRectangle(Brushes.White, 200, 200, 100, 100)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 200, 240, 100, 20)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 240, 200, 20, 100)
+                    e.Graphics.FillRectangle(Brushes.White, MovableObjectsX, MovableObjectsY, 100, 100)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
                     e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game1\Name.txt"), Form1.Font5, Brushes.Blue, 210, 270)
+                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game1\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
                 Else
                     e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, 210, 260)
+                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
                 MovableObjectsX = Math.Round((Form1.ClientSize.Width - 100) / 2)
                 MovableObjectsY = Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100
                 If World2Exist = True Then
-                    e.Graphics.FillRectangle(Brushes.White, 500, 200, 100, 100)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 500, 240, 100, 20)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 540, 200, 20, 100)
+                    e.Graphics.FillRectangle(Brushes.White, MovableObjectsX, MovableObjectsY, 100, 100)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
                     e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game2\Name.txt"), Form1.Font5, Brushes.Blue, 510, 270)
+                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game2\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
                 Else
                     e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, 510, 260)
+                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
                 MovableObjectsX = Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150
                 MovableObjectsY = Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100
                 If World3Exist = True Then
-                    e.Graphics.FillRectangle(Brushes.White, 800, 200, 100, 100)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 800, 240, 100, 20)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 840, 200, 20, 100)
+                    e.Graphics.FillRectangle(Brushes.White, MovableObjectsX, MovableObjectsY, 100, 100)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
                     e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game3\Name.txt"), Form1.Font5, Brushes.Blue, 810, 270)
+                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game3\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
                 Else
                     e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, 810, 260)
+                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
                 MovableObjectsX = Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50
                 MovableObjectsY = Math.Round((Form1.ClientSize.Height - 50) / 2)
                 If World4Exist = True Then
-                    e.Graphics.FillRectangle(Brushes.White, 200, 400, 100, 100)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 200, 440, 100, 20)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 240, 400, 20, 100)
+                    e.Graphics.FillRectangle(Brushes.White, MovableObjectsX, MovableObjectsY, 100, 100)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
                     e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game4\Name.txt"), Form1.Font5, Brushes.Blue, 210, 470)
+                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game4\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
                 Else
                     e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, 210, 460)
+                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
                 MovableObjectsX = Math.Round((Form1.ClientSize.Width - 100) / 2)
                 MovableObjectsY = Math.Round((Form1.ClientSize.Height - 50) / 2)
                 If World5Exist = True Then
-                    e.Graphics.FillRectangle(Brushes.White, 500, 400, 100, 100)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 500, 440, 100, 20)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 540, 400, 20, 100)
+                    e.Graphics.FillRectangle(Brushes.White, MovableObjectsX, MovableObjectsY, 100, 100)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
                     e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game5\Name.txt"), Form1.Font5, Brushes.Blue, 510, 470)
+                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game5\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
                 Else
                     e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, 510, 460)
+                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
                 MovableObjectsX = Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150
                 MovableObjectsY = Math.Round((Form1.ClientSize.Height - 50) / 2)
                 If World6Exist = True Then
-                    e.Graphics.FillRectangle(Brushes.White, 800, 400, 100, 100)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 800, 440, 100, 20)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 840, 400, 20, 100)
+                    e.Graphics.FillRectangle(Brushes.White, MovableObjectsX, MovableObjectsY, 100, 100)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
                     e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game6\Name.txt"), Form1.Font5, Brushes.Blue, 810, 470)
+                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game6\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
                 Else
                     e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, 810, 460)
+                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
                 MovableObjectsX = Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50
                 MovableObjectsY = Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200
                 If World7Exist = True Then
-                    e.Graphics.FillRectangle(Brushes.White, 200, 600, 100, 100)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 200, 640, 100, 20)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 240, 600, 20, 100)
+                    e.Graphics.FillRectangle(Brushes.White, MovableObjectsX, MovableObjectsY, 100, 100)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
                     e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game7\Name.txt"), Form1.Font5, Brushes.Blue, 210, 670)
+                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game7\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
                 Else
                     e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, 210, 660)
+                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
                 MovableObjectsX = Math.Round((Form1.ClientSize.Width - 100) / 2)
                 MovableObjectsY = Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200
                 If World8Exist = True Then
-                    e.Graphics.FillRectangle(Brushes.White, 500, 600, 100, 100)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 500, 640, 100, 20)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 540, 600, 20, 100)
+                    e.Graphics.FillRectangle(Brushes.White, MovableObjectsX, MovableObjectsY, 100, 100)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
                     e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game8\Name.txt"), Form1.Font5, Brushes.Blue, 510, 670)
+                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game8\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
                 Else
                     e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, 510, 660)
+                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
                 MovableObjectsX = Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150
                 MovableObjectsY = Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200
                 If World9Exist = True Then
-                    e.Graphics.FillRectangle(Brushes.White, 800, 600, 100, 100)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 800, 640, 100, 20)
-                    e.Graphics.FillRectangle(Brushes.Yellow, 840, 600, 20, 100)
+                    e.Graphics.FillRectangle(Brushes.White, MovableObjectsX, MovableObjectsY, 100, 100)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
+                    e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
                     e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game9\Name.txt"), Form1.Font5, Brushes.Blue, 810, 670)
+                    e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game9\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
                 Else
                     e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
-                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, 810, 660)
+                    e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
             Else
                 e.Graphics.DrawString("Write name for you world.", Form1.Font3, Brushes.Black, 300, 300)
