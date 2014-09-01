@@ -1,9 +1,4 @@
 ﻿Public Class Form1
-    Dim StartScreen As Boolean = True
-    Dim PlayStarting As Boolean
-    Dim GettingWorldName As Boolean
-    Dim InHome As Boolean
-    Dim InMine As Boolean
     Dim MouseOnSmallStones As Boolean
     Dim ItemClicked As Boolean
     Dim ClickedItemName As String
@@ -41,7 +36,7 @@
     End Sub
 
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
-        If InHome = True Then
+        If Variables.InHome = True Then
             If MouseOnSmallStones = True Then
                 e.Graphics.DrawRectangle(Pen1, 650, 710, 50, 50)
                 e.Graphics.DrawImage(My.Resources.SmallStonesG50, 650, 710)
@@ -62,13 +57,13 @@
                     e.Graphics.DrawString("Mine", Font2, Brushes.White, 722, 462)
                 End If
             End If
-        ElseIf InMine = True Then
+        ElseIf Variables.InMine = True Then
             e.Graphics.DrawImage(My.Resources.Mine, 170, 100)
-        ElseIf StartScreen = True Then
+        ElseIf Variables.StartScreen = True Then
             e.Graphics.FillRectangle(Brushes.Black, 400, 250, 400, 50)
             e.Graphics.DrawString("Play", Font3, Brushes.White, 570, 260)
             e.Graphics.DrawString("Makee", Font4, Brushes.Black, 485, 100)
-        ElseIf PlayStarting = True Then
+        ElseIf Variables.PlayStarting = True Then
             e.Graphics.DrawString("Load The World", Font1, Brushes.Black, 420, 20)
             If World1Exist = True Then
                 e.Graphics.FillRectangle(Brushes.White, 200, 200, 100, 100)
@@ -160,7 +155,7 @@
                 e.Graphics.FillRectangle(Brushes.Black, 800, 600, 100, 100)
                 e.Graphics.DrawString("Empty", Font3, Brushes.White, 810, 660)
             End If
-        ElseIf GettingWorldName = True Then
+        ElseIf Variables.GettingWorldName = True Then
             e.Graphics.DrawString("Write name for you world.", Font3, Brushes.Black, 300, 300)
             e.Graphics.DrawRectangle(Pen1, 350, 350, 350, 50)
             e.Graphics.DrawRectangle(Pen1, 650, 420, 100, 50)
@@ -233,7 +228,7 @@
     Private Sub Form1_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick
         MouseX = MousePosition.X
         MouseY = MousePosition.Y
-        If InHome = True Then
+        If Variables.InHome = True Then
             If ItemClicked = False Then
                 If MouseOnSmallStones = True Then
                     If 910 > e.X And e.X > 860 And 835 > e.Y And e.Y > 785 Then
@@ -253,109 +248,109 @@
                     ItemClicked = False
                     Me.Refresh()
                 ElseIf 988 > MouseX And MouseX > 928 And 560 > MouseY And MouseY > 530 Then
-                    InHome = False
-                    InMine = True
+                    Variables.InHome = False
+                    Variables.InMine = True
                     ItemClicked = False
                     Me.Refresh()
                 End If
             End If
-        ElseIf StartScreen = True Then
+        ElseIf Variables.StartScreen = True Then
             If 800 > e.X And e.X > 400 And 300 > e.Y And e.Y > 250 Then
-                PlayStarting = True
-                StartScreen = False
+                Variables.PlayStarting = True
+                Variables.StartScreen = False
             End If
-        ElseIf PlayStarting = True Then
+        ElseIf Variables.PlayStarting = True Then
             If 508 > MouseX And MouseX > 408 And 380 > MouseY And MouseY > 280 Then
                 If World1Exist = True Then
-                    PlayStarting = False
-                    InHome = True
+                    Variables.PlayStarting = False
+                    Variables.InHome = True
                 Else
-                    PlayStarting = False
-                    GettingWorldName = True
+                    Variables.PlayStarting = False
+                    Variables.GettingWorldName = True
                     GameSlotSelected = 1
                 End If
             End If
             If 808 > MouseX And MouseX > 708 And 380 > MouseY And MouseY > 280 Then
                 If World2Exist = True Then
-                    PlayStarting = False
-                    InHome = True
+                    Variables.PlayStarting = False
+                    Variables.InHome = True
                 Else
-                    PlayStarting = False
-                    GettingWorldName = True
+                    Variables.PlayStarting = False
+                    Variables.GettingWorldName = True
                     GameSlotSelected = 2
                 End If
             End If
             If 1108 > MouseX And MouseX > 1008 And 380 > MouseY And MouseY > 280 Then
                 If World2Exist = True Then
-                    PlayStarting = False
-                    InHome = True
+                    Variables.PlayStarting = False
+                    Variables.InHome = True
                 Else
-                    PlayStarting = False
-                    GettingWorldName = True
+                    Variables.PlayStarting = False
+                    Variables.GettingWorldName = True
                     GameSlotSelected = 3
                 End If
             End If
             If 508 > MouseX And MouseX > 408 And 580 > MouseY And MouseY > 480 Then
                 If World1Exist = True Then
-                    PlayStarting = False
-                    InHome = True
+                    Variables.PlayStarting = False
+                    Variables.InHome = True
                 Else
-                    PlayStarting = False
-                    GettingWorldName = True
+                    Variables.PlayStarting = False
+                    Variables.GettingWorldName = True
                     GameSlotSelected = 4
                 End If
             End If
             If 808 > MouseX And MouseX > 708 And 580 > MouseY And MouseY > 480 Then
                 If World2Exist = True Then
-                    PlayStarting = False
-                    InHome = True
+                    Variables.PlayStarting = False
+                    Variables.InHome = True
                 Else
-                    PlayStarting = False
-                    GettingWorldName = True
+                    Variables.PlayStarting = False
+                    Variables.GettingWorldName = True
                     GameSlotSelected = 5
                 End If
             End If
             If 1108 > MouseX And MouseX > 1008 And 580 > MouseY And MouseY > 480 Then
                 If World2Exist = True Then
-                    PlayStarting = False
-                    InHome = True
+                    Variables.PlayStarting = False
+                    Variables.InHome = True
                 Else
-                    PlayStarting = False
-                    GettingWorldName = True
+                    Variables.PlayStarting = False
+                    Variables.GettingWorldName = True
                     GameSlotSelected = 6
                 End If
             End If
             If 508 > MouseX And MouseX > 408 And 780 > MouseY And MouseY > 680 Then
                 If World1Exist = True Then
-                    PlayStarting = False
-                    InHome = True
+                    Variables.PlayStarting = False
+                    Variables.InHome = True
                 Else
-                    PlayStarting = False
-                    GettingWorldName = True
+                    Variables.PlayStarting = False
+                    Variables.GettingWorldName = True
                     GameSlotSelected = 7
                 End If
             End If
             If 808 > MouseX And MouseX > 708 And 780 > MouseY And MouseY > 680 Then
                 If World2Exist = True Then
-                    PlayStarting = False
-                    InHome = True
+                    Variables.PlayStarting = False
+                    Variables.InHome = True
                 Else
-                    PlayStarting = False
-                    GettingWorldName = True
+                    Variables.PlayStarting = False
+                    Variables.GettingWorldName = True
                     GameSlotSelected = 8
                 End If
             End If
             If 1108 > MouseX And MouseX > 1008 And 780 > MouseY And MouseY > 680 Then
                 If World2Exist = True Then
-                    PlayStarting = False
-                    InHome = True
+                    Variables.PlayStarting = False
+                    Variables.InHome = True
                 Else
-                    PlayStarting = False
-                    GettingWorldName = True
+                    Variables.PlayStarting = False
+                    Variables.GettingWorldName = True
                     GameSlotSelected = 9
                 End If
             End If
-        ElseIf GettingWorldName = True Then
+        ElseIf Variables.GettingWorldName = True Then
             If 905 > MouseX And MouseX > 555 And 478 > MouseY And MouseY > 428 Then
                 GettingWorldNameTextboxClicked = True
             ElseIf 955 > MouseX And MouseX > 855 And 547 > MouseY And MouseY > 497 Then
@@ -363,8 +358,8 @@
                     GettingWorldNameTextboxEmpty = True
                 Else
                     SuperWrite("C:\Makee\SavedGames\Game" & GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
-                    GettingWorldName = False
-                    InHome = True
+                    Variables.GettingWorldName = False
+                    Variables.InHome = True
                 End If
             Else
                 GettingWorldNameTextboxClicked = False
