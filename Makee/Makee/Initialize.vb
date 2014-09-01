@@ -13,18 +13,20 @@
     Dim GettingWorldNameTextboxEmpty As Boolean
     Dim GettingWorldNameTextboxClicked As Boolean
     Dim GettingWorldNameTextboxText As String
+    Dim MovableObjectsWidth As Integer
+    Dim MovableObjectsHeight As Integer
 
     Class Paint
         Public Shared Sub Paint(e As PaintEventArgs)
             If Variables.StartScreen = True Then
                 Form1.MinimumSize = New Size(800, 700)
-                Dim a As Integer = Math.Round((Form1.ClientSize.Width - 400) / 2)
-                Dim b As Integer = Math.Round((Form1.ClientSize.Height - 50) / 3)
-                e.Graphics.FillRectangle(Brushes.Black, a, b, 400, 50)
-                e.Graphics.DrawString("Play", Form1.Font3, Brushes.White, a + 170, b + 10)
-                a = Math.Round((Form1.ClientSize.Width - 230) / 2)
-                b = Math.Round((Form1.ClientSize.Height - 50) / 6)
-                e.Graphics.DrawString("Makee", Form1.Font4, Brushes.Black, a, b)
+                MovableObjectsWidth = Math.Round((Form1.ClientSize.Width - 400) / 2)
+                MovableObjectsHeight = Math.Round((Form1.ClientSize.Height - 50) / 3)
+                e.Graphics.FillRectangle(Brushes.Black, MovableObjectsWidth, MovableObjectsHeight, 400, 50)
+                e.Graphics.DrawString("Play", Form1.Font3, Brushes.White, MovableObjectsWidth + 170, MovableObjectsHeight + 10)
+                MovableObjectsWidth = Math.Round((Form1.ClientSize.Width - 230) / 2)
+                MovableObjectsHeight = Math.Round((Form1.ClientSize.Height - 50) / 6)
+                e.Graphics.DrawString("Makee", Form1.Font4, Brushes.Black, MovableObjectsWidth, MovableObjectsHeight)
             ElseIf Variables.PlayStarting Then
                 e.Graphics.DrawString("Load The World", Form1.Font1, Brushes.Black, 420, 20)
                 If World1Exist = True Then
@@ -165,7 +167,7 @@
     Class Click
         Public Shared Sub Click(e As MouseEventArgs)
             If Variables.StartScreen = True Then
-                If 800 > e.X And e.X > 400 And 300 > e.Y And e.Y > 250 Then
+                If Math.Round((Form1.ClientSize.Width - 400) / 2) + 400 > e.X And e.X > Math.Round((Form1.ClientSize.Width - 400) / 2) And Math.Round((Form1.ClientSize.Height - 50) / 3) + 50 > e.Y And e.Y > Math.Round((Form1.ClientSize.Height - 50) / 3) Then
                     Variables.PlayStarting = True
                     Variables.StartScreen = False
                 End If
