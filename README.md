@@ -2,4 +2,4 @@ Makee
 =====
 MAKEE - Make Everything
 
-MAKEE will be game.
+MAKEE will be a game.
