@@ -10,8 +10,8 @@
     Dim World9Exist As Boolean
     Dim GettingWorldNameTextboxFull As Boolean
     Dim GettingWorldNameTextboxEmpty As Boolean
-    Dim GettingWorldNameTextboxClicked As Boolean
-    Dim GettingWorldNameTextboxText As String
+    Dim GettingWorldNameTextboxClicked As Boolean = True
+    Dim GettingWorldNameTextboxText As String = ""
     Dim MovableObjectsX As Integer
     Dim MovableObjectsY As Integer
 
@@ -138,20 +138,26 @@
                     e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
             Else
-                e.Graphics.DrawString("Write name for you world.", Form1.Font3, Brushes.Black, 300, 300)
-                e.Graphics.DrawRectangle(Form1.Pen1, 350, 350, 350, 50)
-                e.Graphics.DrawRectangle(Form1.Pen1, 650, 420, 100, 50)
-                e.Graphics.DrawString("OK", Form1.Font1, Brushes.Black, 663, 423)
+                e.Graphics.DrawString("Write name for you world.", Form1.Font3, Brushes.Black, Math.Round(Form1.ClientSize.Width / 2) - 150, Math.Round(Form1.ClientSize.Height / 2) - 80)
+                MovableObjectsX = Math.Round(Form1.ClientSize.Width / 2) - 175
+                MovableObjectsY = Math.Round(Form1.ClientSize.Height / 2) - 30
+                e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 350, 50)
+                e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX + 125, MovableObjectsY + 70, 100, 50)
+                e.Graphics.DrawString("OK", Form1.Font1, Brushes.Black, MovableObjectsX + 135, MovableObjectsY + 73)
                 If GettingWorldNameTextboxClicked = False Then
-                    e.Graphics.FillRectangle(Brushes.Gray, 350, 350, 350, 50)
-                    e.Graphics.DrawString(GettingWorldNameTextboxText, Form1.Font3, Brushes.Green, 360, 357)
+                    e.Graphics.FillRectangle(Brushes.Gray, MovableObjectsX, MovableObjectsY, 350, 50)
+                    e.Graphics.DrawString(GettingWorldNameTextboxText, Form1.Font3, Brushes.Green, MovableObjectsX, MovableObjectsY + 15)
                 Else
-                    e.Graphics.DrawString(GettingWorldNameTextboxText, Form1.Font3, Brushes.Green, 360, 357)
+                    e.Graphics.DrawString(GettingWorldNameTextboxText, Form1.Font3, Brushes.Green, MovableObjectsX, MovableObjectsY + 15)
                 End If
                 If GettingWorldNameTextboxFull = True Then
-                    e.Graphics.DrawString("Maximum legth is 10 symbols.", Form1.Font3, Brushes.Red, 500, 357)
+                    e.Graphics.DrawString("Maximum legth is 10 symbols.", Form1.Font3, Brushes.Red, MovableObjectsX - 10, MovableObjectsY - 110)
                 ElseIf GettingWorldNameTextboxEmpty = True Then
-                    e.Graphics.DrawString("You must type name for you world.", Form1.Font3, Brushes.Red, 500, 357)
+                    If GettingWorldNameTextboxText = "" Then
+                        e.Graphics.DrawString("You must type name for you world.", Form1.Font3, Brushes.Red, MovableObjectsX - 30, MovableObjectsY - 110)
+                    Else
+                        GettingWorldNameTextboxEmpty = False
+                    End If
                 End If
             End If
         End Sub
@@ -281,19 +287,19 @@
                     Variables.GameSlotSelected = 9
                 End If
                 Else
-                    If 905 > e.X And e.X > 555 And 478 > e.Y And e.Y > 428 Then
-                        GettingWorldNameTextboxClicked = True
-                    ElseIf 955 > e.X And e.X > 855 And 547 > e.Y And e.Y > 497 Then
-                        If GettingWorldNameTextboxText = "" Then
-                            GettingWorldNameTextboxEmpty = True
-                        Else
-                            Functions.SuperWrite("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
-                            Variables.GettingWorldName = False
-                            Variables.InHome = True
-                        End If
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 175, Math.Round(Form1.ClientSize.Height / 2) - 30, 350, 50) Then
+                    GettingWorldNameTextboxClicked = True
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 50, Math.Round(Form1.ClientSize.Height / 2) + 40, 100, 50) Then
+                    If GettingWorldNameTextboxText = "" Then
+                        GettingWorldNameTextboxEmpty = True
                     Else
-                        GettingWorldNameTextboxClicked = False
+                        Functions.SuperWrite("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
+                        Variables.GettingWorldName = False
+                        Variables.InHome = True
                     End If
+                Else
+                    GettingWorldNameTextboxClicked = False
+                End If
                 End If
         End Sub
     End Class
@@ -301,24 +307,22 @@
     Class Keys
         Public Shared Sub KeyUp(e As KeyPressEventArgs)
             If GettingWorldNameTextboxClicked = True Then
-                Dim AllowedChars As String = "aAbBcCdDeFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789 " & vbBack
+                Dim AllowedChars As String = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789 " & vbBack
                 If AllowedChars.ToArray.Contains(e.KeyChar) = True Then
-                    If GettingWorldNameTextboxText = "" Then
-                        GettingWorldNameTextboxText = GettingWorldNameTextboxText & e.KeyChar
+                    If e.KeyChar = vbBack Then
+                        If GettingWorldNameTextboxText.Length = 10 Then
+                            GettingWorldNameTextboxFull = False
+                        Else
+
+                        End If
+                        If GettingWorldNameTextboxText.Length > 0 Then
+                            GettingWorldNameTextboxText = GettingWorldNameTextboxText.Remove(GettingWorldNameTextboxText.Length - 1)
+                        End If
                     Else
                         If GettingWorldNameTextboxText.Length = 10 Then
-                            If e.KeyChar = vbBack Then
-                                GettingWorldNameTextboxText = GettingWorldNameTextboxText.Remove(GettingWorldNameTextboxText.Length - 1)
-                                GettingWorldNameTextboxFull = False
-                            Else
-                                GettingWorldNameTextboxFull = True
-                            End If
+                            GettingWorldNameTextboxFull = True
                         Else
-                            If e.KeyChar = vbBack Then
-                                GettingWorldNameTextboxText = GettingWorldNameTextboxText.Remove(GettingWorldNameTextboxText.Length - 1)
-                            Else
-                                GettingWorldNameTextboxText = GettingWorldNameTextboxText & e.KeyChar
-                            End If
+                            GettingWorldNameTextboxText = GettingWorldNameTextboxText & e.KeyChar
                         End If
                     End If
                     Form1.Refresh()
