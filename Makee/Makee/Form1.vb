@@ -24,6 +24,8 @@
     Private Sub Form1_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick
         If Variables.StartScreen = True Or Variables.PlayStarting = True Or Variables.GettingWorldName = True Then
             Initialize.Click.Click(e)
+        ElseIf Variables.InHome = True Then
+            InHome.Click(e)
         End If
     End Sub
 

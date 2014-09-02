@@ -6,4 +6,9 @@ Public Class Variables
     Public Shared InHome As Boolean
     Public Shared InMine As Boolean
     Public Shared GameSlotSelected As Integer
+    Public Shared Paused As Boolean
+    Public Shared InMake As Boolean
+    Public Shared InGoingOut As Boolean
+    Public Shared InWarehouse As Boolean
+    Public Shared InMachines As Boolean
 End Class
