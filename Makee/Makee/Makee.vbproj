@@ -121,10 +121,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SmallStonesG50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SmallStonesW30.png" />
+    <None Include="Resources\Stone.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Mine.png" />
