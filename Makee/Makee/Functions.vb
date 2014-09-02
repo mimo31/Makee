@@ -21,4 +21,9 @@
         e.Graphics.FillRectangle(Brushes.Red, Form1.ClientSize.Width - 40, 10, 10, 30)
         e.Graphics.FillRectangle(Brushes.Red, Form1.ClientSize.Width - 20, 10, 10, 30)
     End Sub
+
+    Public Shared Sub DrawBack(e As PaintEventArgs)
+        e.Graphics.FillRectangle(Brushes.Gray, 5, 5, 100, 40)
+        e.Graphics.DrawString("< Back", Form1.Font3, Brushes.White, 7, 7)
+    End Sub
 End Class

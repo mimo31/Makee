@@ -71,7 +71,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Functions.vb" />
+    <Compile Include="Game\InGoingOut.vb" />
     <Compile Include="Game\InHome.vb" />
+    <Compile Include="Game\InMachines.vb" />
+    <Compile Include="Game\InMake.vb" />
+    <Compile Include="Game\InWarehouse.vb" />
+    <Compile Include="Game\Paused.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

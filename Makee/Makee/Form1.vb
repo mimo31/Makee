@@ -11,8 +11,14 @@
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
         If Variables.StartScreen = True Or Variables.GettingWorldName = True Or Variables.PlayStarting Then
             Initialize.Paint.Paint(e)
-        ElseIf Variables.InHome = True Then
-            InHome.Paint(e)
+        Else
+            If Variables.Paused = True Then
+                Paused.Paint(e)
+            Else
+                If Variables.InHome = True Then
+                    InHome.Paint(e)
+                End If
+            End If
         End If
     End Sub
 
@@ -24,8 +30,14 @@
     Private Sub Form1_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick
         If Variables.StartScreen = True Or Variables.PlayStarting = True Or Variables.GettingWorldName = True Then
             Initialize.Click.Click(e)
-        ElseIf Variables.InHome = True Then
-            InHome.Click(e)
+        Else
+            If Variables.Paused = True Then
+                Paused.Click(e)
+            Else
+                If Variables.InHome = True Then
+                    InHome.Click(e)
+                End If
+            End If
         End If
     End Sub
 
