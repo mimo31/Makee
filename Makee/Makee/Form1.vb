@@ -11,6 +11,8 @@
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
         If Variables.StartScreen = True Or Variables.GettingWorldName = True Or Variables.PlayStarting Then
             Initialize.Paint.Paint(e)
+        ElseIf Variables.InHome = True Then
+            InHome.Paint(e)
         End If
     End Sub
 

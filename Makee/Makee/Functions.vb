@@ -14,4 +14,11 @@
             Return False
         End If
     End Function
+
+    Public Shared Sub DrawPause(e As PaintEventArgs)
+        e.Graphics.FillRectangle(Brushes.Black, Form1.ClientSize.Width - 60, 0, 60, 60)
+        e.Graphics.FillRectangle(Brushes.LightGray, Form1.ClientSize.Width - 50, 0, 50, 50)
+        e.Graphics.FillRectangle(Brushes.Red, Form1.ClientSize.Width - 40, 10, 10, 30)
+        e.Graphics.FillRectangle(Brushes.Red, Form1.ClientSize.Width - 20, 10, 10, 30)
+    End Sub
 End Class

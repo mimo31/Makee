@@ -310,6 +310,7 @@
                 Else
                     GettingWorldNameTextboxClicked = False
                 End If
+                Form1.Refresh()
             End If
         End Sub
     End Class
