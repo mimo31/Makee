@@ -64,8 +64,6 @@
             MouseOnSmallStones = False
             Me.Refresh()
         End If
-        Label1.Text = "X = " & MousePosition.X
-        Label2.Text = "Y = " & MousePosition.Y
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
