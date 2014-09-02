@@ -194,6 +194,7 @@
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 400) / 2), Math.Round((Form1.ClientSize.Height - 50) / 3), 400, 50) = True Then
                     Variables.PlayStarting = True
                     Variables.StartScreen = False
+                    Form1.Refresh()
                 End If
             ElseIf Variables.PlayStarting = True Then
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
@@ -205,6 +206,7 @@
                         Variables.GettingWorldName = True
                     End If
                     Variables.GameSlotSelected = 1
+                    Form1.Refresh()
                 End If
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
                     If World2Exist = True Then
@@ -215,6 +217,7 @@
                         Variables.GettingWorldName = True
                     End If
                     Variables.GameSlotSelected = 2
+                    Form1.Refresh()
                 End If
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
                     If World3Exist = True Then
@@ -225,6 +228,7 @@
                         Variables.GettingWorldName = True
                     End If
                     Variables.GameSlotSelected = 3
+                    Form1.Refresh()
                 End If
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
                     If World4Exist = True Then
@@ -235,6 +239,7 @@
                         Variables.GettingWorldName = True
                     End If
                     Variables.GameSlotSelected = 4
+                    Form1.Refresh()
                 End If
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
                     If World5Exist = True Then
@@ -245,6 +250,7 @@
                         Variables.GettingWorldName = True
                     End If
                     Variables.GameSlotSelected = 5
+                    Form1.Refresh()
                 End If
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
                     If World6Exist = True Then
@@ -255,6 +261,7 @@
                         Variables.GettingWorldName = True
                     End If
                     Variables.GameSlotSelected = 6
+                    Form1.Refresh()
                 End If
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) = True Then
                     If World7Exist = True Then
@@ -265,6 +272,7 @@
                         Variables.GettingWorldName = True
                     End If
                     Variables.GameSlotSelected = 7
+                    Form1.Refresh()
                 End If
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) Then
                     If World8Exist = True Then
@@ -275,6 +283,7 @@
                         Variables.GettingWorldName = True
                     End If
                     Variables.GameSlotSelected = 8
+                    Form1.Refresh()
                 End If
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) Then
                     If World9Exist = True Then
@@ -285,6 +294,7 @@
                         Variables.GettingWorldName = True
                     End If
                     Variables.GameSlotSelected = 9
+                    Form1.Refresh()
                 End If
                 Else
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 175, Math.Round(Form1.ClientSize.Height / 2) - 30, 350, 50) Then
@@ -300,7 +310,7 @@
                 Else
                     GettingWorldNameTextboxClicked = False
                 End If
-                End If
+            End If
         End Sub
     End Class
 

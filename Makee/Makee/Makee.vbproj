@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Functions.vb" />
+    <Compile Include="Game\InHome.vb" />
     <Compile Include="Variables.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
