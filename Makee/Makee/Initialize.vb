@@ -185,116 +185,116 @@
     Class Click
         Public Shared Sub Click(e As MouseEventArgs)
             If Variables.StartScreen = True Then
-                If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 400) / 2), Math.Round((Form1.ClientSize.Height - 50) / 3), 400, 50) Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 400) / 2), Math.Round((Form1.ClientSize.Height - 50) / 3), 400, 50) = True Then
                     Variables.PlayStarting = True
                     Variables.StartScreen = False
                 End If
             ElseIf Variables.PlayStarting = True Then
-                If 508 > e.X And e.X > 408 And 380 > e.Y And e.Y > 280 Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
                     If World1Exist = True Then
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        Variables.GameSlotSelected = 1
                     End If
+                    Variables.GameSlotSelected = 1
                 End If
-                If 808 > e.X And e.X > 708 And 380 > e.Y And e.Y > 280 Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
                     If World2Exist = True Then
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        Variables.GameSlotSelected = 2
                     End If
+                    Variables.GameSlotSelected = 2
                 End If
-                If 1108 > e.X And e.X > 1008 And 380 > e.Y And e.Y > 280 Then
-                    If World2Exist = True Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
+                    If World3Exist = True Then
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        Variables.GameSlotSelected = 3
                     End If
+                    Variables.GameSlotSelected = 3
                 End If
-                If 508 > e.X And e.X > 408 And 580 > e.Y And e.Y > 480 Then
-                    If World1Exist = True Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
+                    If World4Exist = True Then
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        Variables.GameSlotSelected = 4
                     End If
+                    Variables.GameSlotSelected = 4
                 End If
-                If 808 > e.X And e.X > 708 And 580 > e.Y And e.Y > 480 Then
-                    If World2Exist = True Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
+                    If World5Exist = True Then
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        Variables.GameSlotSelected = 5
                     End If
+                    Variables.GameSlotSelected = 5
                 End If
-                If 1108 > e.X And e.X > 1008 And 580 > e.Y And e.Y > 480 Then
-                    If World2Exist = True Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
+                    If World6Exist = True Then
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        Variables.GameSlotSelected = 6
                     End If
+                    Variables.GameSlotSelected = 6
                 End If
-                If 508 > e.X And e.X > 408 And 780 > e.Y And e.Y > 680 Then
-                    If World1Exist = True Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) = True Then
+                    If World7Exist = True Then
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        Variables.GameSlotSelected = 7
                     End If
+                    Variables.GameSlotSelected = 7
                 End If
-                If 808 > e.X And e.X > 708 And 780 > e.Y And e.Y > 680 Then
-                    If World2Exist = True Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) Then
+                    If World8Exist = True Then
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        Variables.GameSlotSelected = 8
                     End If
+                    Variables.GameSlotSelected = 8
                 End If
-                If 1108 > e.X And e.X > 1008 And 780 > e.Y And e.Y > 680 Then
-                    If World2Exist = True Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) Then
+                    If World9Exist = True Then
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
-                        Variables.GameSlotSelected = 9
                     End If
+                    Variables.GameSlotSelected = 9
                 End If
-            Else
-                If 905 > e.X And e.X > 555 And 478 > e.Y And e.Y > 428 Then
-                    GettingWorldNameTextboxClicked = True
-                ElseIf 955 > e.X And e.X > 855 And 547 > e.Y And e.Y > 497 Then
-                    If GettingWorldNameTextboxText = "" Then
-                        GettingWorldNameTextboxEmpty = True
-                    Else
-                        Functions.SuperWrite("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
-                        Variables.GettingWorldName = False
-                        Variables.InHome = True
-                    End If
                 Else
-                    GettingWorldNameTextboxClicked = False
+                    If 905 > e.X And e.X > 555 And 478 > e.Y And e.Y > 428 Then
+                        GettingWorldNameTextboxClicked = True
+                    ElseIf 955 > e.X And e.X > 855 And 547 > e.Y And e.Y > 497 Then
+                        If GettingWorldNameTextboxText = "" Then
+                            GettingWorldNameTextboxEmpty = True
+                        Else
+                            Functions.SuperWrite("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
+                            Variables.GettingWorldName = False
+                            Variables.InHome = True
+                        End If
+                    Else
+                        GettingWorldNameTextboxClicked = False
+                    End If
                 End If
-            End If
         End Sub
     End Class
 
