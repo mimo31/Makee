@@ -71,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Functions.vb" />
+    <Compile Include="Game\Achievements.vb" />
+    <Compile Include="Game\Data.vb" />
     <Compile Include="Game\InGoingOut.vb" />
     <Compile Include="Game\InHome.vb" />
     <Compile Include="Game\InMachines.vb" />

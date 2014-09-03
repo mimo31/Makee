@@ -7,7 +7,7 @@
         My.Computer.FileSystem.WriteAllText(FileAddress, TextToWrite, DeletePerious)
     End Sub
 
-    Public Shared Function ButtonPressed(MouseX As UInt16, MouseY As UInt16, ButtonX As UInt16, ButtonY As UInt16, ButtonWidth As UInt16, ButtonHeight As UInt16)
+    Public Shared Function ButtonPressed(MouseX As UInt16, MouseY As UInt16, ButtonX As UInt16, ButtonY As UInt16, ButtonWidth As UInt16, ButtonHeight As UInt16) As Boolean
         If MouseX > ButtonX And MouseY > ButtonY And MouseX < ButtonX + ButtonWidth And MouseY < ButtonY + ButtonHeight Then
             Return True
         Else

@@ -11,4 +11,5 @@ Public Class Variables
     Public Shared InGoingOut As Boolean
     Public Shared InWarehouse As Boolean
     Public Shared InMachines As Boolean
+    Public Shared Achievements As Boolean
 End Class
