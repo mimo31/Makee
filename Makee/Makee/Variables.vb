@@ -12,4 +12,7 @@ Public Class Variables
     Public Shared InWarehouse As Boolean
     Public Shared InMachines As Boolean
     Public Shared Achievements As Boolean
+    Public Shared ChunksDirectory() As String
+    Public Shared ChunksValues(,,) As Byte
+    Public Shared R As New Random
 End Class

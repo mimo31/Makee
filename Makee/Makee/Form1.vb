@@ -17,6 +17,8 @@
             Else
                 If Variables.InHome = True Then
                     InHome.Paint(e)
+                ElseIf Variables.InGoingOut = True Then
+                    InGoingOut.Paint(e)
                 End If
             End If
         End If

@@ -190,6 +190,11 @@
     End Class
 
     Class Click
+        Public Shared Sub CreateFirstDataStructures()
+            My.Computer.FileSystem.CreateDirectory("C:\Makee\Game" & Variables.GameSlotSelected & "\Map")
+
+        End Sub
+
         Public Shared Sub Click(e As MouseEventArgs)
             If Variables.StartScreen = True Then
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 400) / 2), Math.Round((Form1.ClientSize.Height - 50) / 3), 400, 50) = True Then
@@ -293,7 +298,7 @@
                     Variables.StartScreen = True
                     Form1.Refresh()
                 End If
-                Else
+            Else
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 175, Math.Round(Form1.ClientSize.Height / 2) - 30, 350, 50) Then
                     GettingWorldNameTextboxClicked = True
                 ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 50, Math.Round(Form1.ClientSize.Height / 2) + 40, 100, 50) Then
