@@ -16,6 +16,26 @@
     End Sub
 
     Public Shared Function GetValue(x As Integer, y As Integer) As Byte
+        Dim Counter As Integer
+        Dim ChunkValueSearching As String
+        If x > -1 And y > -1 Then
+            ChunkValueSearching = Math.Floor(x / 64) & "," & Math.Floor(y / 64)
+        ElseIf x > -1 Then
+            ChunkValueSearching = Math.Floor(x / 64) & "," & (Math.Abs(Math.Floor((y - 1) / 64)) + 1) * -1
+        ElseIf y > -1 Then
+            ChunkValueSearching = (Math.Abs(Math.Floor((x - 1) / 64)) + 1) * -1 & "," & Math.Floor(y / 64)
+        Else
+            ChunkValueSearching = (Math.Abs(Math.Floor((x - 1) / 64)) + 1) * -1 & "," & (Math.Abs(Math.Floor((y - 1) / 64)) + 1) * -1
+        End If
+
+        Do While Counter < Variables.ChunksDirectory.Length
+            If Variables.ChunksDirectory(Counter) = ChunkValueSearching Then
+                Return Variables.ChunksValues(Variables.ChunksDirectory(Counter), x, y)
+            End If
+            Counter = Counter + 1
+        Loop
+
+        Counter = 0
 
     End Function
 
