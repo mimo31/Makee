@@ -23,10 +23,7 @@
         ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 200, Math.Round(Form1.ClientSize.Height / 2) - 130, 400, 50) = True Then
             Variables.Achievements = True
             Form1.Refresh()
-        ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 200, Math.Round(Form1.ClientSize.Height / 2) - 60, 400, 50) = True Then
-            Data.SaveGame()
         ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 200, Math.Round(Form1.ClientSize.Height / 2) + 10, 400, 50) = True Then
-            Data.SaveGame()
             Variables.Paused = False
             Variables.InHome = False
             Variables.StartScreen = True

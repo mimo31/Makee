@@ -1,17 +1,20 @@
 ﻿Public Class Data
-    Public Shared Sub SaveGame()
-
-    End Sub
-
-    Public Shared Sub LoadGame()
-
-    End Sub
-
     Public Shared Sub GenChunk(x As Integer, y As Integer)
+        ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
+        ReDim Preserve Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, 63, 63)
+        Variables.ChunksDirectory(Variables.ChunksDirectory.Length - 1) = x & "," & y
 
     End Sub
 
-    Public Shared Sub SetValue(x As Integer, y As Integer, Value As Byte)
+    Public Shared Sub ChunkInRAM()
+
+    End Sub
+
+    Public Shared Sub GenPoint(x As Byte, y As Byte, Chunk As Integer)
+
+    End Sub
+
+    Public Shared Sub SetValue(x As Integer, y As Integer, Value As UShort)
 
     End Sub
 
@@ -65,6 +68,16 @@
             Counter = 0
             Counter2 = 0
             Return Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, XInChunk, YInChunk)
+        End If
+
+        If x > -1 And y > -1 Then
+            GenChunk(Math.Floor(x / 64), Math.Floor(y / 64))
+        ElseIf x > -1 Then
+            GenChunk(Math.Floor(x / 64), Math.Floor((y - 1) / 64) - 1)
+        ElseIf y > -1 Then
+            GenChunk(Math.Floor((x - 1) / 64) - 1, Math.Floor(y / 64))
+        Else
+            GenChunk(Math.Floor((x - 1) / 64) - 1, Math.Floor((y - 1) / 64) - 1)
         End If
     End Function
 
