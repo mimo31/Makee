@@ -22,11 +22,23 @@
         If x > -1 And y > -1 Then
             ChunkValueSearching = Math.Floor(x / 64) & "," & Math.Floor(y / 64)
         ElseIf x > -1 Then
-            ChunkValueSearching = Math.Floor(x / 64) & "," & (Math.Abs(Math.Floor((y - 1) / 64)) + 1) * -1
+            ChunkValueSearching = Math.Floor(x / 64) & "," & Math.Floor((y - 1) / 64) - 1
         ElseIf y > -1 Then
-            ChunkValueSearching = (Math.Abs(Math.Floor((x - 1) / 64)) + 1) * -1 & "," & Math.Floor(y / 64)
+            ChunkValueSearching = Math.Floor((x - 1) / 64) - 1 & "," & Math.Floor(y / 64)
         Else
-            ChunkValueSearching = (Math.Abs(Math.Floor((x - 1) / 64)) + 1) * -1 & "," & (Math.Abs(Math.Floor((y - 1) / 64)) + 1) * -1
+            ChunkValueSearching = Math.Floor((x - 1) / 64) - 1 & "," & Math.Floor((y - 1) / 64) - 1
+        End If
+        Dim XInChunk As Byte
+        If x > -1 Then
+            XInChunk = x Mod 64
+        Else
+            XInChunk = 64 + (x Mod 64)
+        End If
+        Dim YInChunk As Byte
+        If y > -1 Then
+            YInChunk = y Mod 64
+        Else
+            YInChunk = 64 + (y Mod 64)
         End If
 
         Do While Counter < Variables.ChunksDirectory.Length
@@ -52,8 +64,8 @@
             Loop
             Counter = 0
             Counter2 = 0
+            Return Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, x Mod 64, y Mod 64)
         End If
-
     End Function
 
     Public Shared Sub SetValueFor(x As Integer, y As Integer)
