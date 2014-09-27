@@ -15,8 +15,9 @@
 
     End Sub
 
-    Public Shared Function GetValue(x As Integer, y As Integer) As Byte
+    Public Shared Function GetValue(x As Integer, y As Integer) As UShort
         Dim Counter As Integer
+        Dim Counter2 As Byte
         Dim ChunkValueSearching As String
         If x > -1 And y > -1 Then
             ChunkValueSearching = Math.Floor(x / 64) & "," & Math.Floor(y / 64)
@@ -36,10 +37,21 @@
         Loop
         Counter = 0
 
-        If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching) = True Then
+        If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching & ".chunk") = True Then
+            Dim ReadedChunk As Byte() = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching & ".chunk")
             ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
             ReDim Preserve Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, 99, 99)
-
+            Variables.ChunksDirectory(Variables.ChunksDirectory.Length - 1) = ChunkValueSearching
+            Do While Counter < 100
+                Do While Counter2 < 100
+                    Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, Counter2, Counter) = ReadedChunk(0) * 256 + ReadedChunk(1)
+                    Counter2 = Counter2 + 1
+                Loop
+                Counter2 = 0
+                Counter = Counter + 1
+            Loop
+            Counter = 0
+            Counter2 = 0
         End If
     End Function
 
