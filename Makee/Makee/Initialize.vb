@@ -27,6 +27,15 @@
                 MovableObjectsY = Math.Round((Form1.ClientSize.Height - 50) / 6)
                 e.Graphics.DrawString("Makee", Form1.Font4, Brushes.Black, MovableObjectsX, MovableObjectsY)
             ElseIf Variables.PlayStarting Then
+                World1Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game1\Name.txt")
+                World2Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game2\Name.txt")
+                World3Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game3\Name.txt")
+                World4Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game4\Name.txt")
+                World5Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game5\Name.txt")
+                World6Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game6\Name.txt")
+                World7Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game7\Name.txt")
+                World8Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game8\Name.txt")
+                World9Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game9\Name.txt")
                 Functions.DrawBack(e)
                 Form1.MinimumSize = New Size(500 + Form1.Width - Form1.ClientSize.Width, 550 + Form1.Height - Form1.ClientSize.Height)
                 e.Graphics.DrawString("Load The World", Form1.Font1, Brushes.Black, Math.Round((Form1.ClientSize.Width - 300) / 2), 20)
@@ -175,24 +184,13 @@
                 My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game7")
                 My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game8")
                 My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game9")
-            Else
-                World1Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game1\Name.txt")
-                World2Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game2\Name.txt")
-                World3Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game3\Name.txt")
-                World4Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game4\Name.txt")
-                World5Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game5\Name.txt")
-                World6Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game6\Name.txt")
-                World7Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game7\Name.txt")
-                World8Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game8\Name.txt")
-                World9Exist = My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game9\Name.txt")
             End If
         End Sub
     End Class
 
     Class Click
         Public Shared Sub CreateFirstDataStructures()
-            My.Computer.FileSystem.CreateDirectory("C:\Makee\Game" & Variables.GameSlotSelected & "\Map")
-
+            My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks")
         End Sub
 
         Public Shared Sub Click(e As MouseEventArgs)
@@ -305,6 +303,7 @@
                     If GettingWorldNameTextboxText = "" Then
                         GettingWorldNameTextboxEmpty = True
                     Else
+                        CreateFirstDataStructures()
                         Functions.SuperWrite("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
                         Variables.GettingWorldName = False
                         Variables.InHome = True

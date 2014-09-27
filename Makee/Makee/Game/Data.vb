@@ -34,9 +34,13 @@
             End If
             Counter = Counter + 1
         Loop
-
         Counter = 0
 
+        If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching) = True Then
+            ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
+            ReDim Preserve Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, 99, 99)
+
+        End If
     End Function
 
     Public Shared Sub SetValueFor(x As Integer, y As Integer)
