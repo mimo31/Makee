@@ -64,11 +64,11 @@
             Loop
             Counter = 0
             Counter2 = 0
-            Return Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, x Mod 64, y Mod 64)
+            Return Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, XInChunk, YInChunk)
         End If
     End Function
 
-    Public Shared Sub SetValueFor(x As Integer, y As Integer)
+    Public Shared Function ChooseValue(a As UShort, b As UShort, c As UShort, d As UShort, e As UShort, f As UShort, g As UShort, h As UShort) As UShort
         Dim TotalFriends As Byte
         Dim Rocks As Byte
         Dim Forests As Byte
@@ -77,11 +77,11 @@
         Dim Waters As Byte
         Dim NumberChoiced As Byte
         If Variables.R.Next(0, 100) = 0 Then
-            SetValue(x, y, Variables.R.Next(1, 6))
+            Return Variables.R.Next(1, 6)
         Else
-            If GetValue(x - 1, y) > 0 Then
+            If a > 0 Then
                 TotalFriends = 1
-                Select Case GetValue(x - 1, y)
+                Select Case a
                     Case 1
                         Rocks = 1
                     Case 2
@@ -94,9 +94,9 @@
                         Waters = 1
                 End Select
             End If
-            If GetValue(x - 1, y - 1) > 0 Then
+            If b > 0 Then
                 TotalFriends = TotalFriends + 1
-                Select Case GetValue(x - 1, y - 1)
+                Select Case b
                     Case 1
                         Rocks = Rocks + 1
                     Case 2
@@ -109,9 +109,9 @@
                         Waters = Waters + 1
                 End Select
             End If
-            If GetValue(x - 1, y + 1) > 0 Then
+            If c > 0 Then
                 TotalFriends = TotalFriends + 1
-                Select Case GetValue(x - 1, y + 1)
+                Select Case c
                     Case 1
                         Rocks = Rocks + 1
                     Case 2
@@ -124,9 +124,9 @@
                         Waters = Waters + 1
                 End Select
             End If
-            If GetValue(x, y - 1) > 0 Then
+            If d > 0 Then
                 TotalFriends = TotalFriends + 1
-                Select Case GetValue(x, y - 1)
+                Select Case d
                     Case 1
                         Rocks = Rocks + 1
                     Case 2
@@ -139,9 +139,9 @@
                         Waters = Waters + 1
                 End Select
             End If
-            If GetValue(x, y + 1) > 0 Then
+            If e > 0 Then
                 TotalFriends = TotalFriends + 1
-                Select Case GetValue(x, y + 1)
+                Select Case e
                     Case 1
                         Rocks = Rocks + 1
                     Case 2
@@ -154,9 +154,9 @@
                         Waters = Waters + 1
                 End Select
             End If
-            If GetValue(x + 1, y - 1) > 0 Then
+            If f > 0 Then
                 TotalFriends = TotalFriends + 1
-                Select Case GetValue(x + 1, y - 1)
+                Select Case f
                     Case 1
                         Rocks = Rocks + 1
                     Case 2
@@ -169,9 +169,9 @@
                         Waters = Waters + 1
                 End Select
             End If
-            If GetValue(x + 1, y + 1) > 0 Then
+            If g > 0 Then
                 TotalFriends = TotalFriends + 1
-                Select Case GetValue(x + 1, y + 1)
+                Select Case g
                     Case 1
                         Rocks = Rocks + 1
                     Case 2
@@ -184,9 +184,9 @@
                         Waters = Waters + 1
                 End Select
             End If
-            If GetValue(x + 1, y) > 0 Then
+            If h > 0 Then
                 TotalFriends = TotalFriends + 1
-                Select Case GetValue(x + 1, y)
+                Select Case h
                     Case 1
                         Rocks = Rocks + 1
                     Case 2
@@ -200,39 +200,30 @@
                 End Select
             End If
             If TotalFriends = 0 Then
-                SetValue(x, y, Variables.R.Next(1, 6))
+                Return Variables.R.Next(1, 6)
             End If
             NumberChoiced = Variables.R.Next(0, TotalFriends)
             If NumberChoiced < Rocks Then
-                SetValue(x, y, 1)
-                Exit Sub
+                Return 1
             Else
                 NumberChoiced = NumberChoiced - Rocks
             End If
             If NumberChoiced < Forests Then
-                SetValue(x, y, 2)
-                Exit Sub
+                Return 2
             Else
                 NumberChoiced = NumberChoiced - Forests
             End If
             If NumberChoiced < Meadows Then
-                SetValue(x, y, 3)
-                Exit Sub
+                Return 3
             Else
                 NumberChoiced = NumberChoiced - Meadows
             End If
             If NumberChoiced < Plains Then
-                SetValue(x, y, 4)
-                Exit Sub
+                Return 4
             Else
                 NumberChoiced = NumberChoiced - Plains
             End If
-            If NumberChoiced < Waters Then
-                SetValue(x, y, 5)
-                Exit Sub
-            Else
-                NumberChoiced = NumberChoiced - Waters
-            End If
+            Return 5
         End If
-    End Sub
+    End Function
 End Class
