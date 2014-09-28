@@ -208,6 +208,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
+                        GettingWorldNameTextboxText = ""
                     End If
                     Variables.GameSlotSelected = 1
                     Form1.Refresh()
@@ -218,6 +219,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
+                        GettingWorldNameTextboxText = ""
                     End If
                     Variables.GameSlotSelected = 2
                     Form1.Refresh()
@@ -228,6 +230,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
+                        GettingWorldNameTextboxText = ""
                     End If
                     Variables.GameSlotSelected = 3
                     Form1.Refresh()
@@ -238,6 +241,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
+                        GettingWorldNameTextboxText = ""
                     End If
                     Variables.GameSlotSelected = 4
                     Form1.Refresh()
@@ -248,6 +252,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
+                        GettingWorldNameTextboxText = ""
                     End If
                     Variables.GameSlotSelected = 5
                     Form1.Refresh()
@@ -258,6 +263,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
+                        GettingWorldNameTextboxText = ""
                     End If
                     Variables.GameSlotSelected = 6
                     Form1.Refresh()
@@ -268,6 +274,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
+                        GettingWorldNameTextboxText = ""
                     End If
                     Variables.GameSlotSelected = 7
                     Form1.Refresh()
@@ -278,6 +285,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
+                        GettingWorldNameTextboxText = ""
                     End If
                     Variables.GameSlotSelected = 8
                     Form1.Refresh()
@@ -288,6 +296,7 @@
                     Else
                         Variables.PlayStarting = False
                         Variables.GettingWorldName = True
+                        GettingWorldNameTextboxText = ""
                     End If
                     Variables.GameSlotSelected = 9
                     Form1.Refresh()
