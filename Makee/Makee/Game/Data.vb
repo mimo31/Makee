@@ -103,6 +103,41 @@
                 Loop
             End If
         End If
+        If FriendsChunksDetected(4) = False Then
+            If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x + 1 & "," & y - 1) = True Then
+                ReadedChunk = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x + 1 & "," & y - 1)
+                FriendsChunksDetected(4) = True
+                Chunk(65, 0) = ReadedChunk(8064) * 256 + ReadedChunk(8065)
+            End If
+        End If
+        If FriendsChunksDetected(5) = False Then
+            If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x - 1 & "," & y + 1) = True Then
+                ReadedChunk = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x - 1 & "," & y + 1)
+                FriendsChunksDetected(5) = True
+                Chunk(0, 65) = ReadedChunk(126) * 256 + ReadedChunk(127)
+            End If
+        End If
+        If FriendsChunksDetected(6) = False Then
+            If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x - 1 & "," & y - 1) = True Then
+                ReadedChunk = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x - 1 & "," & y - 1)
+                FriendsChunksDetected(6) = True
+                Chunk(0, 0) = ReadedChunk(8190) * 256 + ReadedChunk(8191)
+            End If
+        End If
+        If FriendsChunksDetected(7) = False Then
+            If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x + 1 & "," & y + 1) = True Then
+                ReadedChunk = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x + 1 & "," & y + 1)
+                FriendsChunksDetected(7) = True
+                Chunk(65, 65) = ReadedChunk(0) * 256 + ReadedChunk(1)
+            End If
+        End If
+        If FriendsChunksDetected(6) = True Or FriendsChunksDetected(0) = True Or FriendsChunksDetected(1) = True Then
+            Counter = 0
+            Counter2 = 0
+            Do While Counter < 64
+                Counter = Counter + 1
+            Loop
+        End If
     End Sub
 
     Public Shared Sub ChunkInRAM()
