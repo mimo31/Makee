@@ -26,7 +26,7 @@
             Variables.Paused = True
             Form1.Refresh()
         ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2), 0, Math.Round(Form1.ClientSize.Width / 2), Math.Round(Form1.ClientSize.Height / 2)) = True Then
-            Variables.InGoingOut = True
+            InGoingOut.Load()
             Variables.InHome = False
             Form1.Refresh()
         ElseIf Functions.ButtonPressed(e.X, e.Y, 0, Math.Round(Form1.ClientSize.Height / 2), Math.Round(Form1.ClientSize.Width / 2), Math.Round(Form1.ClientSize.Height / 2)) = True Then

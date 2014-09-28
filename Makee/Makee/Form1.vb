@@ -11,16 +11,12 @@
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
         If Variables.StartScreen = True Or Variables.GettingWorldName = True Or Variables.PlayStarting Then
             Initialize.Paint.Paint(e)
-        Else
-            If Variables.Paused = True Then
+        ElseIf Variables.Paused = True Then
                 Paused.Paint(e)
-            Else
-                If Variables.InHome = True Then
-                    InHome.Paint(e)
-                ElseIf Variables.InGoingOut = True Then
-                    InGoingOut.Paint(e)
-                End If
-            End If
+        ElseIf Variables.InHome = True Then
+            InHome.Paint(e)
+        ElseIf Variables.InGoingOut = True Then
+            InGoingOut.Paint(e)
         End If
     End Sub
 
@@ -32,14 +28,12 @@
     Private Sub Form1_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick
         If Variables.StartScreen = True Or Variables.PlayStarting = True Or Variables.GettingWorldName = True Then
             Initialize.Click.Click(e)
-        Else
-            If Variables.Paused = True Then
-                Paused.Click(e)
-            Else
-                If Variables.InHome = True Then
-                    InHome.Click(e)
-                End If
-            End If
+        ElseIf Variables.Paused = True Then
+            Paused.Click(e)
+        ElseIf Variables.InHome = True Then
+            InHome.Click(e)
+        ElseIf Variables.InGoingOut = True Then
+            InGoingOut.Click(e)
         End If
     End Sub
 
@@ -56,5 +50,17 @@
 
     Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         Me.Refresh()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        If Variables.InGoingOut = True Then
+            InGoingOut.TimerTick()
+        End If
+    End Sub
+
+    Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
+        If Variables.InGoingOut = True Then
+            InGoingOut.MouseMove(e)
+        End If
     End Sub
 End Class

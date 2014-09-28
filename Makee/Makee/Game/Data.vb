@@ -6,7 +6,7 @@
         Else
             ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
             Dim Test As Integer = Variables.ChunksDirectory.Length - 1
-            ReDim Preserve Variables.ChunksValues(63, 63, 1)
+            ReDim Preserve Variables.ChunksValues(63, 63, Variables.ChunksDirectory.Length - 1)
         End If
         Dim Chunk(65, 65) As UShort
         Dim Counter As Integer
@@ -48,19 +48,19 @@
             End If
             If Variables.ChunksDirectory(Counter) = x + 1 & "," & y - 1 Then
                 FriendsChunksDetected(4) = True
-                Chunk(65, 0) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
+                Chunk(65, 0) = Variables.ChunksValues(0, 63, Counter)
             End If
             If Variables.ChunksDirectory(Counter) = x - 1 & "," & y + 1 Then
                 FriendsChunksDetected(5) = True
-                Chunk(0, 65) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
+                Chunk(0, 65) = Variables.ChunksValues(63, 0, Counter)
             End If
             If Variables.ChunksDirectory(Counter) = x - 1 & "," & y - 1 Then
                 FriendsChunksDetected(6) = True
-                Chunk(0, 0) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
+                Chunk(0, 0) = Variables.ChunksValues(63, 63, Counter)
             End If
             If Variables.ChunksDirectory(Counter) = x + 1 & "," & y + 1 Then
                 FriendsChunksDetected(7) = True
-                Chunk(65, 65) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
+                Chunk(65, 65) = Variables.ChunksValues(0, 0, Counter)
             End If
             Counter = Counter + 1
         Loop
@@ -192,6 +192,14 @@
 
     End Sub
 
+    Public Shared Sub SaveGame()
+
+    End Sub
+
+    Public Shared Sub LoadGame()
+
+    End Sub
+
     Public Shared Function GetValue(x As Integer, y As Integer) As UShort
         Dim Counter As Integer
         Dim Counter2 As Byte
@@ -209,13 +217,13 @@
         If x > -1 Then
             XInChunk = x Mod 64
         Else
-            XInChunk = 64 + (x Mod 64)
+            XInChunk = (64 + (x Mod 64)) Mod 64
         End If
         Dim YInChunk As Byte
         If y > -1 Then
             YInChunk = y Mod 64
         Else
-            YInChunk = 64 + (y Mod 64)
+            YInChunk = (64 + (y Mod 64)) Mod 64
         End If
 
         If Variables.ChunksDirectory IsNot Nothing Then
