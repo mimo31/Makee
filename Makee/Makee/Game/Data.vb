@@ -132,9 +132,51 @@
             End If
         End If
         If FriendsChunksDetected(6) = True Or FriendsChunksDetected(0) = True Or FriendsChunksDetected(1) = True Then
-            Counter = 0
-            Counter2 = 0
-            Do While Counter < 64
+            Counter = 1
+            Counter2 = 1
+            Do While Counter < 65
+                Do While Counter2 < 65
+                    Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
+                    Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, Counter2 - 1, Counter - 1) = Chunk(Counter2, Counter)
+                    Counter2 = Counter2 + 1
+                Loop
+                Counter2 = 1
+                Counter = Counter + 1
+            Loop
+        ElseIf FriendsChunksDetected(3) = True Or FriendsChunksDetected(8) = True Or FriendsChunksDetected(4) = True Then
+            Counter = 64
+            Counter2 = 64
+            Do While Counter > 0
+                Do While Counter2 > 0
+                    Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
+                    Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, Counter2 - 1, Counter - 1) = Chunk(Counter2, Counter)
+                    Counter2 = Counter2 - 1
+                Loop
+                Counter2 = 64
+                Counter = Counter - 1
+            Loop
+        ElseIf FriendsChunksDetected(4) = True Then
+            Counter = 64
+            Counter2 = 1
+            Do While Counter > 0
+                Do While Counter2 < 65
+                    Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
+                    Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, Counter2 - 1, Counter - 1) = Chunk(Counter2, Counter)
+                    Counter = Counter2 + 1
+                Loop
+                Counter2 = 1
+                Counter = Counter - 1
+            Loop
+        Else
+            Counter = 1
+            Counter2 = 64
+            Do While Counter > 65
+                Do While Counter2 < 0
+                    Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
+                    Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, Counter2 - 1, Counter - 1) = Chunk(Counter2, Counter)
+                    Counter = Counter2 - 1
+                Loop
+                Counter2 = 64
                 Counter = Counter + 1
             Loop
         End If
