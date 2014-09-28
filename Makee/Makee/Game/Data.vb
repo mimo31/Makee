@@ -5,20 +5,104 @@
         Dim Chunk(65, 65) As UShort
         Dim Counter As Integer
         Dim Counter2 As Integer
-        Dim Start As Byte
+        Dim FriendsChunksDetected(7) As Boolean
         Variables.ChunksDirectory(Variables.ChunksDirectory.Length - 1) = x & "," & y
         Do While Counter < Variables.ChunksDirectory.Length
             If Variables.ChunksDirectory(Counter) = x & "," & y - 1 Then
-                Start = 1
+                FriendsChunksDetected(0) = True
+                Counter2 = 1
                 Do While Counter2 < 65
-                    Chunk(Counter, 64) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                    Chunk(Counter2, 1) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
                     Counter2 = Counter2 + 1
                 Loop
-                Exit Do
+            End If
+            If Variables.ChunksDirectory(Counter) = x - 1 & "," & y Then
+                FriendsChunksDetected(1) = True
+                Counter2 = 1
+                Do While Counter2 < 65
+                    Chunk(1, Counter) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                    Counter2 = Counter2 + 1
+                Loop
+            End If
+            If Variables.ChunksDirectory(Counter) = x & "," & y + 1 Then
+                FriendsChunksDetected(2) = True
+                Counter2 = 1
+                Do While Counter2 < 65
+                    Chunk(Counter2, 65) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                    Counter2 = Counter2 + 1
+                Loop
+            End If
+            If Variables.ChunksDirectory(Counter) = x + 1 & "," & y Then
+                FriendsChunksDetected(3) = True
+                Counter2 = 1
+                Do While Counter2 < 65
+                    Chunk(65, Counter) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                    Counter2 = Counter2 + 1
+                Loop
+            End If
+            If Variables.ChunksDirectory(Counter) = x + 1 & "," & y - 1 Then
+                FriendsChunksDetected(4) = True
+                Chunk(65, 0) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+            End If
+            If Variables.ChunksDirectory(Counter) = x - 1 & "," & y + 1 Then
+                FriendsChunksDetected(5) = True
+                Chunk(0, 65) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+            End If
+            If Variables.ChunksDirectory(Counter) = x - 1 & "," & y - 1 Then
+                FriendsChunksDetected(6) = True
+                Chunk(0, 0) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+            End If
+            If Variables.ChunksDirectory(Counter) = x + 1 & "," & y + 1 Then
+                FriendsChunksDetected(7) = True
+                Chunk(65, 65) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
             End If
             Counter = Counter + 1
         Loop
-        Counter = 0
+        Dim ReadedChunk() As Byte
+        If FriendsChunksDetected(0) = False Then
+            If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x & "," & y - 1) = True Then
+                ReadedChunk = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x & "," & y - 1)
+                FriendsChunksDetected(0) = True
+                Counter2 = 0
+                Do While Counter2 < 64
+                    Chunk(Counter2 + 1, 0) = ReadedChunk(8064 + 2 * Counter2) * 256 + ReadedChunk(8065 + 2 * Counter2)
+                    Counter2 = Counter2 + 1
+                Loop
+            End If
+        End If
+        If FriendsChunksDetected(1) = False Then
+            If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x - 1 & "," & y) = True Then
+                ReadedChunk = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x - 1 & "," & y)
+                FriendsChunksDetected(1) = True
+                Counter2 = 0
+                Do While Counter2 < 64
+                    Chunk(0, Counter2 + 1) = ReadedChunk(126 + 128 * Counter2) * 256 + ReadedChunk(127 + 128 * Counter2)
+                    Counter2 = Counter2 + 1
+                Loop
+            End If
+        End If
+        If FriendsChunksDetected(2) = False Then
+            If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x & "," & y + 1) = True Then
+                ReadedChunk = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x & "," & y + 1)
+                FriendsChunksDetected(2) = True
+                Counter2 = 0
+                Do While Counter2 < 64
+                    Chunk(Counter2 + 1, 65) = ReadedChunk(2 * Counter2) * 256 + ReadedChunk(1 + 2 * Counter2)
+                    Counter2 = Counter2 + 1
+                Loop
+            End If
+        End If
+        If FriendsChunksDetected(3) = False Then
+            If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x + 1 & "," & y) = True Then
+                ReadedChunk = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x + 1 & "," & y)
+                FriendsChunksDetected(3) = True
+                Counter2 = 0
+                Do While Counter2 < 64
+                    Chunk(65, Counter2 + 1) = ReadedChunk(128 * Counter2) * 256 + ReadedChunk(1 + 128 * Counter2)
+                    Counter2 = Counter2 + 1
+                Loop
+            End If
+        End If
     End Sub
 
     Public Shared Sub ChunkInRAM()
