@@ -182,14 +182,6 @@
         End If
     End Sub
 
-    Public Shared Sub ChunkInRAM()
-
-    End Sub
-
-    Public Shared Sub GenPoint(x As Byte, y As Byte, Chunk As Integer)
-
-    End Sub
-
     Public Shared Sub SetValue(x As Integer, y As Integer, Value As UShort)
 
     End Sub
@@ -255,6 +247,7 @@
         Else
             GenChunk(Math.Floor((x - 1) / 64) - 1, Math.Floor((y - 1) / 64) - 1)
         End If
+        Return Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, XInChunk, YInChunk)
     End Function
 
     Public Shared Function ChooseValue(a As UShort, b As UShort, c As UShort, d As UShort, e As UShort, f As UShort, g As UShort, h As UShort) As UShort
