@@ -2,8 +2,23 @@
     Public Shared Sub GenChunk(x As Integer, y As Integer)
         ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
         ReDim Preserve Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, 63, 63)
+        Dim Chunk(65, 65) As UShort
+        Dim Counter As Integer
+        Dim Counter2 As Integer
+        Dim Start As Byte
         Variables.ChunksDirectory(Variables.ChunksDirectory.Length - 1) = x & "," & y
-
+        Do While Counter < Variables.ChunksDirectory.Length
+            If Variables.ChunksDirectory(Counter) = x & "," & y - 1 Then
+                Start = 1
+                Do While Counter2 < 65
+                    Chunk(Counter, 64) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                    Counter2 = Counter2 + 1
+                Loop
+                Exit Do
+            End If
+            Counter = Counter + 1
+        Loop
+        Counter = 0
     End Sub
 
     Public Shared Sub ChunkInRAM()
@@ -46,7 +61,7 @@
 
         Do While Counter < Variables.ChunksDirectory.Length
             If Variables.ChunksDirectory(Counter) = ChunkValueSearching Then
-                Return Variables.ChunksValues(Variables.ChunksDirectory(Counter), x, y)
+                Return Variables.ChunksValues(Counter, x, y)
             End If
             Counter = Counter + 1
         Loop
