@@ -1,7 +1,13 @@
 ﻿Public Class Data
     Public Shared Sub GenChunk(x As Integer, y As Integer)
-        ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
-        ReDim Preserve Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, 63, 63)
+        If Variables.ChunksDirectory Is Nothing Then
+            ReDim Preserve Variables.ChunksDirectory(0)
+            ReDim Preserve Variables.ChunksValues(63, 63, 0)
+        Else
+            ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
+            Dim Test As Integer = Variables.ChunksDirectory.Length - 1
+            ReDim Preserve Variables.ChunksValues(63, 63, 1)
+        End If
         Dim Chunk(65, 65) As UShort
         Dim Counter As Integer
         Dim Counter2 As Integer
@@ -12,7 +18,7 @@
                 FriendsChunksDetected(0) = True
                 Counter2 = 1
                 Do While Counter2 < 65
-                    Chunk(Counter2, 1) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                    Chunk(Counter2, 1) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
                     Counter2 = Counter2 + 1
                 Loop
             End If
@@ -20,7 +26,7 @@
                 FriendsChunksDetected(1) = True
                 Counter2 = 1
                 Do While Counter2 < 65
-                    Chunk(1, Counter) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                    Chunk(1, Counter) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
                     Counter2 = Counter2 + 1
                 Loop
             End If
@@ -28,7 +34,7 @@
                 FriendsChunksDetected(2) = True
                 Counter2 = 1
                 Do While Counter2 < 65
-                    Chunk(Counter2, 65) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                    Chunk(Counter2, 65) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
                     Counter2 = Counter2 + 1
                 Loop
             End If
@@ -36,25 +42,25 @@
                 FriendsChunksDetected(3) = True
                 Counter2 = 1
                 Do While Counter2 < 65
-                    Chunk(65, Counter) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                    Chunk(65, Counter) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
                     Counter2 = Counter2 + 1
                 Loop
             End If
             If Variables.ChunksDirectory(Counter) = x + 1 & "," & y - 1 Then
                 FriendsChunksDetected(4) = True
-                Chunk(65, 0) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                Chunk(65, 0) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
             End If
             If Variables.ChunksDirectory(Counter) = x - 1 & "," & y + 1 Then
                 FriendsChunksDetected(5) = True
-                Chunk(0, 65) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                Chunk(0, 65) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
             End If
             If Variables.ChunksDirectory(Counter) = x - 1 & "," & y - 1 Then
                 FriendsChunksDetected(6) = True
-                Chunk(0, 0) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                Chunk(0, 0) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
             End If
             If Variables.ChunksDirectory(Counter) = x + 1 & "," & y + 1 Then
                 FriendsChunksDetected(7) = True
-                Chunk(65, 65) = Variables.ChunksValues(Counter, Counter2 - 1, 0)
+                Chunk(65, 65) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
             End If
             Counter = Counter + 1
         Loop
@@ -137,19 +143,19 @@
             Do While Counter < 65
                 Do While Counter2 < 65
                     Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
-                    Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, Counter2 - 1, Counter - 1) = Chunk(Counter2, Counter)
+                    Variables.ChunksValues(Counter2 - 1, Counter - 1, Variables.ChunksDirectory.Length - 1) = Chunk(Counter2, Counter)
                     Counter2 = Counter2 + 1
                 Loop
                 Counter2 = 1
                 Counter = Counter + 1
             Loop
-        ElseIf FriendsChunksDetected(3) = True Or FriendsChunksDetected(8) = True Or FriendsChunksDetected(4) = True Then
+        ElseIf FriendsChunksDetected(2) = True Or FriendsChunksDetected(7) = True Or FriendsChunksDetected(3) = True Then
             Counter = 64
             Counter2 = 64
             Do While Counter > 0
                 Do While Counter2 > 0
                     Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
-                    Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, Counter2 - 1, Counter - 1) = Chunk(Counter2, Counter)
+                    Variables.ChunksValues(Counter2 - 1, Counter - 1, Variables.ChunksDirectory.Length - 1) = Chunk(Counter2, Counter)
                     Counter2 = Counter2 - 1
                 Loop
                 Counter2 = 64
@@ -161,8 +167,8 @@
             Do While Counter > 0
                 Do While Counter2 < 65
                     Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
-                    Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, Counter2 - 1, Counter - 1) = Chunk(Counter2, Counter)
-                    Counter = Counter2 + 1
+                    Variables.ChunksValues(Counter2 - 1, Counter - 1, Variables.ChunksDirectory.Length - 1) = Chunk(Counter2, Counter)
+                    Counter2 = Counter2 + 1
                 Loop
                 Counter2 = 1
                 Counter = Counter - 1
@@ -170,11 +176,11 @@
         Else
             Counter = 1
             Counter2 = 64
-            Do While Counter > 65
-                Do While Counter2 < 0
+            Do While Counter < 65
+                Do While Counter2 > 0
                     Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
-                    Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, Counter2 - 1, Counter - 1) = Chunk(Counter2, Counter)
-                    Counter = Counter2 - 1
+                    Variables.ChunksValues(Counter2 - 1, Counter - 1, Variables.ChunksDirectory.Length - 1) = Chunk(Counter2, Counter)
+                    Counter2 = Counter2 - 1
                 Loop
                 Counter2 = 64
                 Counter = Counter + 1
@@ -212,22 +218,24 @@
             YInChunk = 64 + (y Mod 64)
         End If
 
-        Do While Counter < Variables.ChunksDirectory.Length
-            If Variables.ChunksDirectory(Counter) = ChunkValueSearching Then
-                Return Variables.ChunksValues(Counter, x, y)
-            End If
-            Counter = Counter + 1
-        Loop
-        Counter = 0
+        If Variables.ChunksDirectory IsNot Nothing Then
+            Do While Counter < Variables.ChunksDirectory.Length
+                If Variables.ChunksDirectory(Counter) = ChunkValueSearching Then
+                    Return Variables.ChunksValues(XInChunk, YInChunk, Counter)
+                End If
+                Counter = Counter + 1
+            Loop
+            Counter = 0
+        End If
 
         If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching & ".chunk") = True Then
             Dim ReadedChunk As Byte() = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching & ".chunk")
             ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
-            ReDim Preserve Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, 63, 63)
+            ReDim Preserve Variables.ChunksValues(63, 63, Variables.ChunksDirectory.Length - 1)
             Variables.ChunksDirectory(Variables.ChunksDirectory.Length - 1) = ChunkValueSearching
             Do While Counter < 64
                 Do While Counter2 < 64
-                    Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, Counter2, Counter) = ReadedChunk(0) * 256 + ReadedChunk(1)
+                    Variables.ChunksValues(Counter2, Counter, Variables.ChunksDirectory.Length - 1) = ReadedChunk(0) * 256 + ReadedChunk(1)
                     Counter2 = Counter2 + 1
                 Loop
                 Counter2 = 0
@@ -235,7 +243,7 @@
             Loop
             Counter = 0
             Counter2 = 0
-            Return Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, XInChunk, YInChunk)
+            Return Variables.ChunksValues(XInChunk, YInChunk, Variables.ChunksDirectory.Length - 1)
         End If
 
         If x > -1 And y > -1 Then
@@ -247,7 +255,7 @@
         Else
             GenChunk(Math.Floor((x - 1) / 64) - 1, Math.Floor((y - 1) / 64) - 1)
         End If
-        Return Variables.ChunksValues(Variables.ChunksDirectory.Length - 1, XInChunk, YInChunk)
+        Return Variables.ChunksValues(XInChunk, YInChunk, Variables.ChunksDirectory.Length - 1)
     End Function
 
     Public Shared Function ChooseValue(a As UShort, b As UShort, c As UShort, d As UShort, e As UShort, f As UShort, g As UShort, h As UShort) As UShort
