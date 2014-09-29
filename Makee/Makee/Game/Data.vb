@@ -207,11 +207,11 @@
         If x > -1 And y > -1 Then
             ChunkValueSearching = Math.Floor(x / 64) & "," & Math.Floor(y / 64)
         ElseIf x > -1 Then
-            ChunkValueSearching = Math.Floor(x / 64) & "," & Math.Floor((y - 1) / 64) - 1
+            ChunkValueSearching = Math.Floor(x / 64) & "," & Math.Ceiling((y - 1) / 64) - 1
         ElseIf y > -1 Then
-            ChunkValueSearching = Math.Floor((x - 1) / 64) - 1 & "," & Math.Floor(y / 64)
+            ChunkValueSearching = Math.Ceiling((x - 1) / 64) - 1 & "," & Math.Floor(y / 64)
         Else
-            ChunkValueSearching = Math.Floor((x - 1) / 64) - 1 & "," & Math.Floor((y - 1) / 64) - 1
+            ChunkValueSearching = Math.Ceiling((x - 1) / 64) - 1 & "," & Math.Ceiling((y - 1) / 64) - 1
         End If
         Dim XInChunk As Byte
         If x > -1 Then
@@ -257,11 +257,11 @@
         If x > -1 And y > -1 Then
             GenChunk(Math.Floor(x / 64), Math.Floor(y / 64))
         ElseIf x > -1 Then
-            GenChunk(Math.Floor(x / 64), Math.Floor((y - 1) / 64) - 1)
+            GenChunk(Math.Floor(x / 64), Math.Ceiling((y - 1) / 64) - 1)
         ElseIf y > -1 Then
-            GenChunk(Math.Floor((x - 1) / 64) - 1, Math.Floor(y / 64))
+            GenChunk(Math.Ceiling((x - 1) / 64) - 1, Math.Floor(y / 64))
         Else
-            GenChunk(Math.Floor((x - 1) / 64) - 1, Math.Floor((y - 1) / 64) - 1)
+            GenChunk(Math.Ceiling((x - 1) / 64) - 1, Math.Ceiling((y - 1) / 64) - 1)
         End If
         Return Variables.ChunksValues(XInChunk, YInChunk, Variables.ChunksDirectory.Length - 1)
     End Function
