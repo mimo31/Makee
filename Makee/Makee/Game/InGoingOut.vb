@@ -5,6 +5,10 @@
     Public Shared OnDown As Boolean
     Public Shared OnRight As Boolean
     Public Shared OnLeft As Boolean
+    Public Shared OnUpRight As Boolean
+    Public Shared OnDownRight As Boolean
+    Public Shared OnUpLeft As Boolean
+    Public Shared OnDownLeft As Boolean
     Dim Zoom As Byte
 
     Public Shared Sub Paint(e As PaintEventArgs)
@@ -28,6 +32,18 @@
         e.Graphics.FillRectangle(Brushes.Red, 150, Form1.ClientSize.Height - 150, Form1.ClientSize.Width - 300, 50)
         e.Graphics.FillRectangle(Brushes.DarkRed, 100, Form1.ClientSize.Height - 150, 50, 50)
         e.Graphics.FillRectangle(Brushes.Red, 100, 150, 50, Form1.ClientSize.Height - 300)
+        e.Graphics.FillPolygon(Brushes.White, {New PointF(Form1.ClientSize.Width / 2 - 50, 140), New PointF(Form1.ClientSize.Width / 2, 120), New PointF(Form1.ClientSize.Width / 2 + 50, 140), New PointF(Form1.ClientSize.Width / 2 + 65, 140), New PointF(Form1.ClientSize.Width / 2, 110), New PointF(Form1.ClientSize.Width / 2 - 65, 140)})
+        e.Graphics.FillPolygon(Brushes.White, {New PointF(Form1.ClientSize.Width / 2 - 50, Form1.ClientSize.Height - 140), New PointF(Form1.ClientSize.Width / 2, Form1.ClientSize.Height - 120), New PointF(Form1.ClientSize.Width / 2 + 50, Form1.ClientSize.Height - 140), New PointF(Form1.ClientSize.Width / 2 + 65, Form1.ClientSize.Height - 140), New PointF(Form1.ClientSize.Width / 2, Form1.ClientSize.Height - 110), New PointF(Form1.ClientSize.Width / 2 - 65, Form1.ClientSize.Height - 140)})
+        e.Graphics.FillPolygon(Brushes.White, {New PointF(140, Form1.ClientSize.Height / 2 - 65), New PointF(110, Form1.ClientSize.Height / 2), New PointF(140, Form1.ClientSize.Height / 2 + 65), New PointF(140, Form1.ClientSize.Height / 2 + 50), New PointF(120, Form1.ClientSize.Height / 2), New PointF(140, Form1.ClientSize.Height / 2 - 50)})
+        e.Graphics.FillPolygon(Brushes.White, {New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 - 65), New PointF(Form1.ClientSize.Width - 110, Form1.ClientSize.Height / 2), New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 + 65), New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 + 50), New PointF(Form1.ClientSize.Width - 120, Form1.ClientSize.Height / 2), New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 - 50)})
+        e.Graphics.FillRectangle(Brushes.White, 110, 110, 5, 30)
+        e.Graphics.FillRectangle(Brushes.White, 115, 110, 25, 5)
+        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 115, 110, 5, 30)
+        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 140, 110, 25, 5)
+        e.Graphics.FillRectangle(Brushes.White, 110, Form1.ClientSize.Height - 140, 5, 30)
+        e.Graphics.FillRectangle(Brushes.White, 115, Form1.ClientSize.Height - 115, 25, 5)
+        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 115, Form1.ClientSize.Height - 140, 5, 30)
+        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 140, Form1.ClientSize.Height - 115, 25, 5)
     End Sub
 
     Public Shared Sub PaintPoint(e As PaintEventArgs, x As Integer, y As Integer)
@@ -62,6 +78,18 @@
             MapPositionX = MapPositionX + 1
         ElseIf OnLeft = True Then
             MapPositionX = MapPositionX - 1
+        ElseIf OnUpLeft = True Then
+            MapPositionY = MapPositionY - 1
+            MapPositionX = MapPositionX - 1
+        ElseIf OnDownLeft = True Then
+            MapPositionY = MapPositionY + 1
+            MapPositionX = MapPositionX - 1
+        ElseIf OnUpRight = True Then
+            MapPositionY = MapPositionY - 1
+            MapPositionX = MapPositionX + 1
+        ElseIf OnDownRight = True Then
+            MapPositionY = MapPositionY + 1
+            MapPositionX = MapPositionX + 1
         End If
         Form1.Refresh()
     End Sub
@@ -71,6 +99,10 @@
         OnRight = False
         OnDown = False
         OnLeft = False
+        OnDownLeft = False
+        OnDownRight = False
+        OnUpLeft = False
+        OnUpRight = False
         If Functions.ButtonPressed(e.X, e.Y, 150, 100, Form1.ClientSize.Width - 300, 50) = True Then
             OnUp = True
         ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, 150, 50, Form1.ClientSize.Height - 300) = True Then
@@ -79,6 +111,14 @@
             OnDown = True
         ElseIf Functions.ButtonPressed(e.X, e.Y, 100, 150, 50, Form1.ClientSize.Height - 300) = True Then
             OnLeft = True
+        ElseIf Functions.ButtonPressed(e.X, e.Y, 100, 100, 50, 50) = True Then
+            OnUpLeft = True
+        ElseIf Functions.ButtonPressed(e.X, e.Y, 100, Form1.ClientSize.Height - 150, 50, 50) = True Then
+            OnDownLeft = True
+        ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, 100, 50, 50) = True Then
+            OnUpRight = True
+        ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, Form1.ClientSize.Height - 150, 50, 50) = True Then
+            OnDownRight = True
         End If
     End Sub
 
