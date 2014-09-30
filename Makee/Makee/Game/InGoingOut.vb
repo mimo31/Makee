@@ -56,16 +56,21 @@
     Public Shared Sub TimerTick()
         If OnDown = True Then
             MapPositionY = MapPositionY + 1
-        ElseIf OnUp Then
+        ElseIf OnUp = True Then
             MapPositionY = MapPositionY - 1
+        ElseIf OnRight = True Then
+            MapPositionX = MapPositionX + 1
         End If
         Form1.Refresh()
     End Sub
 
     Public Shared Sub MouseMove(e As MouseEventArgs)
         OnUp = False
+        OnRight = False
         If Functions.ButtonPressed(e.X, e.Y, 150, 100, Form1.ClientSize.Width - 300, 50) = True Then
             OnUp = True
+        ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, 150, 50, Form1.ClientSize.Height - 300) = True Then
+            OnRight = True
         End If
     End Sub
 

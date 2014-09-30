@@ -18,7 +18,7 @@
                 FriendsChunksDetected(0) = True
                 Counter2 = 1
                 Do While Counter2 < 65
-                    Chunk(Counter2, 1) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
+                    Chunk(Counter2, 0) = Variables.ChunksValues(Counter2 - 1, 63, Counter)
                     Counter2 = Counter2 + 1
                 Loop
             End If
@@ -26,7 +26,7 @@
                 FriendsChunksDetected(1) = True
                 Counter2 = 1
                 Do While Counter2 < 65
-                    Chunk(1, Counter) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
+                    Chunk(0, Counter2) = Variables.ChunksValues(63, Counter2 - 1, Counter)
                     Counter2 = Counter2 + 1
                 Loop
             End If
@@ -42,7 +42,7 @@
                 FriendsChunksDetected(3) = True
                 Counter2 = 1
                 Do While Counter2 < 65
-                    Chunk(65, Counter) = Variables.ChunksValues(Counter2 - 1, 0, Counter)
+                    Chunk(65, Counter2) = Variables.ChunksValues(0, Counter2 - 1, Counter)
                     Counter2 = Counter2 + 1
                 Loop
             End If
