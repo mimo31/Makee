@@ -60,6 +60,8 @@
             MapPositionY = MapPositionY - 1
         ElseIf OnRight = True Then
             MapPositionX = MapPositionX + 1
+        ElseIf OnLeft = True Then
+            MapPositionX = MapPositionX - 1
         End If
         Form1.Refresh()
     End Sub
@@ -67,10 +69,16 @@
     Public Shared Sub MouseMove(e As MouseEventArgs)
         OnUp = False
         OnRight = False
+        OnDown = False
+        OnLeft = False
         If Functions.ButtonPressed(e.X, e.Y, 150, 100, Form1.ClientSize.Width - 300, 50) = True Then
             OnUp = True
         ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, 150, 50, Form1.ClientSize.Height - 300) = True Then
             OnRight = True
+        ElseIf Functions.ButtonPressed(e.X, e.Y, 150, Form1.ClientSize.Height - 150, Form1.ClientSize.Width - 300, 50) = True Then
+            OnDown = True
+        ElseIf Functions.ButtonPressed(e.X, e.Y, 100, 150, 50, Form1.ClientSize.Height - 300) = True Then
+            OnLeft = True
         End If
     End Sub
 
