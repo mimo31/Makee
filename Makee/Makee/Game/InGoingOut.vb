@@ -24,7 +24,6 @@
             Counter2 = 0
             Counter = Counter + 1
         Loop
-        Variables.ChunksValues(0, 0, 0) = 6
         e.Graphics.FillRectangle(Brushes.DarkRed, 100, 100, 50, 50)
         e.Graphics.FillRectangle(Brushes.Red, 150, 100, Form1.ClientSize.Width - 300, 50)
         e.Graphics.FillRectangle(Brushes.DarkRed, Form1.ClientSize.Width - 150, 100, 50, 50)

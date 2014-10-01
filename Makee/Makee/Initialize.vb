@@ -190,8 +190,17 @@
 
     Class Click
         Public Shared Sub CreateFirstDataStructures()
+            Dim Counter As Integer
             My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks")
             Data.GenChunk(0, 0)
+            Do
+                If Data.GetValue(Counter, 0) = 5 Then
+                Else
+                    Data.SetValue(Counter, 0, 6)
+                    Exit Do
+                End If
+                Counter = Counter + 1
+            Loop
         End Sub
 
         Public Shared Sub Click(e As MouseEventArgs)
