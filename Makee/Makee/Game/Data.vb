@@ -189,7 +189,43 @@
     End Sub
 
     Public Shared Sub SetValue(x As Integer, y As Integer, Value As UShort)
-
+        Dim Counter As Integer
+        Dim ChunkValueSearching As String
+        Dim XInChunk As Integer
+        Dim YInChunk As Integer
+        If x > -1 And y > -1 Then
+            ChunkValueSearching = Math.Floor(x / 64) & "," & Math.Floor(y / 64)
+        ElseIf x > -1 Then
+            ChunkValueSearching = Math.Floor(x / 64) & "," & Math.Ceiling((y + 1) / 64) - 1
+        ElseIf y > -1 Then
+            ChunkValueSearching = Math.Ceiling((x + 1) / 64) - 1 & "," & Math.Floor(y / 64)
+        Else
+            ChunkValueSearching = Math.Ceiling((x + 1) / 64) - 1 & "," & Math.Ceiling((y + 1) / 64) - 1
+        End If
+        If x > -1 Then
+            XInChunk = x Mod 64
+        Else
+            XInChunk = x
+            Do Until XInChunk > -1
+                XInChunk = XInChunk + 64
+            Loop
+        End If
+        If y > -1 Then
+            YInChunk = y Mod 64
+        Else
+            YInChunk = y
+            Do Until YInChunk > -1
+                YInChunk = YInChunk + 64
+            Loop
+        End If
+        If Variables.ChunksDirectory IsNot Nothing Then
+            Do While Counter < Variables.ChunksDirectory.Length
+                If Variables.ChunksDirectory(Counter) = ChunkValueSearching Then
+                    Variables.ChunksValues(XInChunk, YInChunk, Counter) = Value
+                End If
+                Counter = Counter + 1
+            Loop
+        End If
     End Sub
 
     Public Shared Sub SaveGame()

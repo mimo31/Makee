@@ -24,6 +24,7 @@
             Counter2 = 0
             Counter = Counter + 1
         Loop
+        Variables.ChunksValues(0, 0, 0) = 6
         e.Graphics.FillRectangle(Brushes.DarkRed, 100, 100, 50, 50)
         e.Graphics.FillRectangle(Brushes.Red, 150, 100, Form1.ClientSize.Width - 300, 50)
         e.Graphics.FillRectangle(Brushes.DarkRed, Form1.ClientSize.Width - 150, 100, 50, 50)
@@ -58,6 +59,8 @@
                 e.Graphics.FillRectangle(Brushes.LightGreen, 150 + 16 * x, 150 + 16 * y, 16, 16)
             Case 5
                 e.Graphics.FillRectangle(Brushes.Blue, 150 + 16 * x, 150 + 16 * y, 16, 16)
+            Case 6
+                e.Graphics.DrawImage(New Bitmap(My.Resources.Base1, 16, 16), 150 + 16 * x, 150 + 16 * y)
         End Select
     End Sub
 

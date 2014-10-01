@@ -191,6 +191,7 @@
     Class Click
         Public Shared Sub CreateFirstDataStructures()
             My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks")
+            Data.GenChunk(0, 0)
         End Sub
 
         Public Shared Sub Click(e As MouseEventArgs)
