@@ -5,7 +5,6 @@
             ReDim Preserve Variables.ChunksValues(63, 63, 0)
         Else
             ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
-            Dim Test As Integer = Variables.ChunksDirectory.Length - 1
             ReDim Preserve Variables.ChunksValues(63, 63, Variables.ChunksDirectory.Length - 1)
         End If
         Dim Chunk(65, 65) As UShort
@@ -137,6 +136,7 @@
                 Chunk(65, 65) = ReadedChunk(0) * 256 + ReadedChunk(1)
             End If
         End If
+        Dim ChunkToWrite(8191) As Byte
         If FriendsChunksDetected(6) = True Or FriendsChunksDetected(0) = True Or FriendsChunksDetected(1) = True Then
             Counter = 1
             Counter2 = 1
@@ -144,6 +144,8 @@
                 Do While Counter2 < 65
                     Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
                     Variables.ChunksValues(Counter2 - 1, Counter - 1, Variables.ChunksDirectory.Length - 1) = Chunk(Counter2, Counter)
+                    ChunkToWrite(((Counter - 1) * 64 + Counter2 - 1) * 2) = Math.Floor(Chunk(Counter2, Counter) / 256)
+                    ChunkToWrite(((Counter - 1) * 64 + Counter2 - 1) * 2 + 1) = Chunk(Counter2, Counter) Mod 256
                     Counter2 = Counter2 + 1
                 Loop
                 Counter2 = 1
@@ -156,6 +158,8 @@
                 Do While Counter2 > 0
                     Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
                     Variables.ChunksValues(Counter2 - 1, Counter - 1, Variables.ChunksDirectory.Length - 1) = Chunk(Counter2, Counter)
+                    ChunkToWrite(((Counter - 1) * 64 + Counter2 - 1) * 2) = Math.Floor(Chunk(Counter2, Counter) / 256)
+                    ChunkToWrite(((Counter - 1) * 64 + Counter2 - 1) * 2 + 1) = Chunk(Counter2, Counter) Mod 256
                     Counter2 = Counter2 - 1
                 Loop
                 Counter2 = 64
@@ -168,6 +172,8 @@
                 Do While Counter2 < 65
                     Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
                     Variables.ChunksValues(Counter2 - 1, Counter - 1, Variables.ChunksDirectory.Length - 1) = Chunk(Counter2, Counter)
+                    ChunkToWrite(((Counter - 1) * 64 + Counter2 - 1) * 2) = Math.Floor(Chunk(Counter2, Counter) / 256)
+                    ChunkToWrite(((Counter - 1) * 64 + Counter2 - 1) * 2 + 1) = Chunk(Counter2, Counter) Mod 256
                     Counter2 = Counter2 + 1
                 Loop
                 Counter2 = 1
@@ -180,12 +186,15 @@
                 Do While Counter2 > 0
                     Chunk(Counter2, Counter) = ChooseValue(Chunk(Counter2, Counter - 1), Chunk(Counter2 - 1, Counter), Chunk(Counter2 - 1, Counter - 1), Chunk(Counter2 + 1, Counter - 1), Chunk(Counter2, Counter + 1), Chunk(Counter2 + 1, Counter + 1), Chunk(Counter2 - 1, Counter + 1), Chunk(Counter2 + 1, Counter))
                     Variables.ChunksValues(Counter2 - 1, Counter - 1, Variables.ChunksDirectory.Length - 1) = Chunk(Counter2, Counter)
+                    ChunkToWrite(((Counter - 1) * 64 + Counter2 - 1) * 2) = Math.Floor(Chunk(Counter2, Counter) / 256)
+                    ChunkToWrite(((Counter - 1) * 64 + Counter2 - 1) * 2 + 1) = Chunk(Counter2, Counter) Mod 256
                     Counter2 = Counter2 - 1
                 Loop
                 Counter2 = 64
                 Counter = Counter + 1
             Loop
         End If
+        My.Computer.FileSystem.WriteAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & x & "," & y & ".chunk", ChunkToWrite, False)
     End Sub
 
     Public Shared Sub SetValue(x As Integer, y As Integer, Value As UShort)
@@ -225,6 +234,12 @@
                 End If
                 Counter = Counter + 1
             Loop
+        End If
+        If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching & ".chunk") = True Then
+            Dim ReadedChunk As Byte() = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching & ".chunk")
+            ReadedChunk((64 * YInChunk + XInChunk) * 2) = Math.Floor(Value / 256)
+            ReadedChunk((64 * YInChunk + XInChunk) * 2 + 1) = Value Mod 256
+            My.Computer.FileSystem.WriteAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching & ".chunk", ReadedChunk, False)
         End If
     End Sub
 
@@ -280,12 +295,17 @@
 
         If My.Computer.FileSystem.FileExists("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching & ".chunk") = True Then
             Dim ReadedChunk As Byte() = My.Computer.FileSystem.ReadAllBytes("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks\" & ChunkValueSearching & ".chunk")
-            ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
-            ReDim Preserve Variables.ChunksValues(63, 63, Variables.ChunksDirectory.Length - 1)
+            If Variables.ChunksDirectory Is Nothing Then
+                ReDim Preserve Variables.ChunksDirectory(0)
+                ReDim Preserve Variables.ChunksValues(63, 63, 0)
+            Else
+                ReDim Preserve Variables.ChunksDirectory(Variables.ChunksDirectory.Length)
+                ReDim Preserve Variables.ChunksValues(63, 63, Variables.ChunksDirectory.Length - 1)
+            End If
             Variables.ChunksDirectory(Variables.ChunksDirectory.Length - 1) = ChunkValueSearching
             Do While Counter < 64
                 Do While Counter2 < 64
-                    Variables.ChunksValues(Counter2, Counter, Variables.ChunksDirectory.Length - 1) = ReadedChunk(0) * 256 + ReadedChunk(1)
+                    Variables.ChunksValues(Counter2, Counter, Variables.ChunksDirectory.Length - 1) = ReadedChunk((Counter * 64 + Counter2) * 2) * 256 + ReadedChunk((Counter * 64 + Counter2) * 2 + 1)
                     Counter2 = Counter2 + 1
                 Loop
                 Counter2 = 0
