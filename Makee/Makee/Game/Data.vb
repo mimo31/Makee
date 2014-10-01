@@ -244,11 +244,21 @@
     End Sub
 
     Public Shared Sub SaveGame()
-
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapX.txt", Variables.MapPositionX, False)
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapY.txt", Variables.MapPositionY, False)
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Zoom.txt", Variables.ZoomFactor, False)
     End Sub
 
     Public Shared Sub LoadGame()
+        Variables.MapPositionX = My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapX.txt")
+        Variables.MapPositionY = My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapY.txt")
+        Variables.ZoomFactor = My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Zoom.txt")
+    End Sub
 
+    Public Shared Sub QuitGame()
+        Variables.ChunksDirectory = Nothing
+        Variables.ChunksValues = Nothing
+        Variables.StartScreen = True
     End Sub
 
     Public Shared Function GetValue(x As Integer, y As Integer) As UShort

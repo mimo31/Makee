@@ -1,6 +1,4 @@
 ﻿Public Class InGoingOut
-    Public Shared MapPositionX As Integer
-    Public Shared MapPositionY As Integer
     Public Shared OnUp As Boolean
     Public Shared OnDown As Boolean
     Public Shared OnRight As Boolean
@@ -9,7 +7,6 @@
     Public Shared OnDownRight As Boolean
     Public Shared OnUpLeft As Boolean
     Public Shared OnDownLeft As Boolean
-    Dim Zoom As Byte
 
     Public Shared Sub Paint(e As PaintEventArgs)
         Functions.DrawPause(e)
@@ -47,19 +44,19 @@
     End Sub
 
     Public Shared Sub PaintPoint(e As PaintEventArgs, x As Integer, y As Integer)
-        Select Case Data.GetValue(x + MapPositionX, y + MapPositionY)
+        Select Case Data.GetValue(x + Variables.MapPositionX, y + Variables.MapPositiony)
             Case 1
-                e.Graphics.FillRectangle(Brushes.Gray, 150 + 16 * x, 150 + 16 * y, 16, 16)
+                e.Graphics.FillRectangle(Brushes.Gray, 150 + Variables.ZoomFactor * x, 150 + Variables.ZoomFactor * y, Variables.ZoomFactor, Variables.ZoomFactor)
             Case 2
-                e.Graphics.FillRectangle(Brushes.DarkGreen, 150 + 16 * x, 150 + 16 * y, 16, 16)
+                e.Graphics.FillRectangle(Brushes.DarkGreen, 150 + Variables.ZoomFactor * x, 150 + Variables.ZoomFactor * y, Variables.ZoomFactor, Variables.ZoomFactor)
             Case 3
-                e.Graphics.FillRectangle(Brushes.Green, 150 + 16 * x, 150 + 16 * y, 16, 16)
+                e.Graphics.FillRectangle(Brushes.Green, 150 + Variables.ZoomFactor * x, 150 + Variables.ZoomFactor * y, Variables.ZoomFactor, Variables.ZoomFactor)
             Case 4
-                e.Graphics.FillRectangle(Brushes.LightGreen, 150 + 16 * x, 150 + 16 * y, 16, 16)
+                e.Graphics.FillRectangle(Brushes.LightGreen, 150 + Variables.ZoomFactor * x, 150 + Variables.ZoomFactor * y, Variables.ZoomFactor, Variables.ZoomFactor)
             Case 5
-                e.Graphics.FillRectangle(Brushes.Blue, 150 + 16 * x, 150 + 16 * y, 16, 16)
+                e.Graphics.FillRectangle(Brushes.Blue, 150 + Variables.ZoomFactor * x, 150 + Variables.ZoomFactor * y, Variables.ZoomFactor, Variables.ZoomFactor)
             Case 6
-                e.Graphics.DrawImage(New Bitmap(My.Resources.Base1, 16, 16), 150 + 16 * x, 150 + 16 * y)
+                e.Graphics.DrawImage(New Bitmap(My.Resources.Base1, Variables.ZoomFactor, Variables.ZoomFactor), 150 + Variables.ZoomFactor * x, 150 + Variables.ZoomFactor * y)
         End Select
     End Sub
 
@@ -68,30 +65,33 @@
             Variables.InGoingOut = False
             Variables.InHome = True
             Form1.Refresh()
+        ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 60, 0, 60, 60) = True Then
+            Variables.Paused = True
+            Form1.Refresh()
         End If
     End Sub
 
     Public Shared Sub TimerTick()
         If OnDown = True Then
-            MapPositionY = MapPositionY + 1
+            Variables.MapPositiony = Variables.MapPositiony + 1
         ElseIf OnUp = True Then
-            MapPositionY = MapPositionY - 1
+            Variables.MapPositiony = Variables.MapPositiony - 1
         ElseIf OnRight = True Then
-            MapPositionX = MapPositionX + 1
+            Variables.MapPositionX = Variables.MapPositionX + 1
         ElseIf OnLeft = True Then
-            MapPositionX = MapPositionX - 1
+            Variables.MapPositionX = Variables.MapPositionX - 1
         ElseIf OnUpLeft = True Then
-            MapPositionY = MapPositionY - 1
-            MapPositionX = MapPositionX - 1
+            Variables.MapPositiony = Variables.MapPositiony - 1
+            Variables.MapPositionX = Variables.MapPositionX - 1
         ElseIf OnDownLeft = True Then
-            MapPositionY = MapPositionY + 1
-            MapPositionX = MapPositionX - 1
+            Variables.MapPositiony = Variables.MapPositiony + 1
+            Variables.MapPositionX = Variables.MapPositionX - 1
         ElseIf OnUpRight = True Then
-            MapPositionY = MapPositionY - 1
-            MapPositionX = MapPositionX + 1
+            Variables.MapPositiony = Variables.MapPositiony - 1
+            Variables.MapPositionX = Variables.MapPositionX + 1
         ElseIf OnDownRight = True Then
-            MapPositionY = MapPositionY + 1
-            MapPositionX = MapPositionX + 1
+            Variables.MapPositiony = Variables.MapPositiony + 1
+            Variables.MapPositionX = Variables.MapPositionX + 1
         End If
         Form1.Refresh()
     End Sub

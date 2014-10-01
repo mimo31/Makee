@@ -192,6 +192,7 @@
         Public Shared Sub CreateFirstDataStructures()
             Dim Counter As Integer
             My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks")
+            Variables.ZoomFactor = 16
             Data.GenChunk(0, 0)
             Do
                 If Data.GetValue(Counter, 0) = 5 Then
@@ -212,7 +213,9 @@
                 End If
             ElseIf Variables.PlayStarting = True Then
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
+                    Variables.GameSlotSelected = 1
                     If World1Exist = True Then
+                        Data.LoadGame()
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
@@ -220,10 +223,11 @@
                         Variables.GettingWorldName = True
                         GettingWorldNameTextboxText = ""
                     End If
-                    Variables.GameSlotSelected = 1
                     Form1.Refresh()
                 ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
+                    Variables.GameSlotSelected = 2
                     If World2Exist = True Then
+                        Data.LoadGame()
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
@@ -231,10 +235,11 @@
                         Variables.GettingWorldName = True
                         GettingWorldNameTextboxText = ""
                     End If
-                    Variables.GameSlotSelected = 2
                     Form1.Refresh()
                 ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
+                    Variables.GameSlotSelected = 3
                     If World3Exist = True Then
+                        Data.LoadGame()
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
@@ -242,10 +247,11 @@
                         Variables.GettingWorldName = True
                         GettingWorldNameTextboxText = ""
                     End If
-                    Variables.GameSlotSelected = 3
                     Form1.Refresh()
                 ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
+                    Variables.GameSlotSelected = 4
                     If World4Exist = True Then
+                        Data.LoadGame()
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
@@ -253,10 +259,11 @@
                         Variables.GettingWorldName = True
                         GettingWorldNameTextboxText = ""
                     End If
-                    Variables.GameSlotSelected = 4
                     Form1.Refresh()
                 ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
+                    Variables.GameSlotSelected = 5
                     If World5Exist = True Then
+                        Data.LoadGame()
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
@@ -264,10 +271,11 @@
                         Variables.GettingWorldName = True
                         GettingWorldNameTextboxText = ""
                     End If
-                    Variables.GameSlotSelected = 5
                     Form1.Refresh()
                 ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
+                    Variables.GameSlotSelected = 6
                     If World6Exist = True Then
+                        Data.LoadGame()
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
@@ -275,10 +283,11 @@
                         Variables.GettingWorldName = True
                         GettingWorldNameTextboxText = ""
                     End If
-                    Variables.GameSlotSelected = 6
                     Form1.Refresh()
                 ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) = True Then
+                    Variables.GameSlotSelected = 7
                     If World7Exist = True Then
+                        Data.LoadGame()
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
@@ -286,10 +295,11 @@
                         Variables.GettingWorldName = True
                         GettingWorldNameTextboxText = ""
                     End If
-                    Variables.GameSlotSelected = 7
                     Form1.Refresh()
                 ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) Then
+                    Variables.GameSlotSelected = 8
                     If World8Exist = True Then
+                        Data.LoadGame()
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
@@ -297,10 +307,11 @@
                         Variables.GettingWorldName = True
                         GettingWorldNameTextboxText = ""
                     End If
-                    Variables.GameSlotSelected = 8
                     Form1.Refresh()
                 ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) Then
+                    Variables.GameSlotSelected = 9
                     If World9Exist = True Then
+                        Data.LoadGame()
                         Variables.PlayStarting = False
                         Variables.InHome = True
                     Else
@@ -308,7 +319,6 @@
                         Variables.GettingWorldName = True
                         GettingWorldNameTextboxText = ""
                     End If
-                    Variables.GameSlotSelected = 9
                     Form1.Refresh()
                 ElseIf Functions.ButtonPressed(e.X, e.Y, 5, 5, 100, 40) Then
                     Variables.PlayStarting = False

@@ -14,5 +14,8 @@ Public Class Variables
     Public Shared Achievements As Boolean
     Public Shared ChunksDirectory() As String
     Public Shared ChunksValues(,,) As UShort
+    Public Shared MapPositionX As Integer
+    Public Shared MapPositionY As Integer
+    Public Shared ZoomFactor As Integer
     Public Shared R As New Random
 End Class

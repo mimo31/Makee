@@ -28,7 +28,9 @@
         ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 200, Math.Round(Form1.ClientSize.Height / 2) + 10, 400, 50) = True Then
             Variables.Paused = False
             Variables.InHome = False
-            Variables.StartScreen = True
+            Variables.InGoingOut = False
+            Data.SaveGame()
+            Data.QuitGame()
             Form1.Refresh()
         End If
     End Sub
