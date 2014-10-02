@@ -8,6 +8,12 @@
     Public Pen2 As New Pen(Color.Red, 3)
     Dim ReadedText As String
 
+    Private Sub Form1_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
+        If Variables.InGoingOut = True Then
+            InGoingOut.MouseWheel(e)
+        End If
+    End Sub
+
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
         If Variables.StartScreen = True Or Variables.GettingWorldName = True Or Variables.PlayStarting Then
             Initialize.Paint.Paint(e)

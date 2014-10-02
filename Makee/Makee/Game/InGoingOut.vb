@@ -13,8 +13,8 @@
         Functions.DrawBack(e)
         Dim Counter As Integer
         Dim Counter2 As Integer
-        Do While Counter < (Form1.ClientSize.Width - 300) / 16
-            Do While Counter2 < (Form1.ClientSize.Height - 300) / 16
+        Do While Counter < (Form1.ClientSize.Width - 300) / Variables.ZoomFactor
+            Do While Counter2 < (Form1.ClientSize.Height - 300) / Variables.ZoomFactor
                 PaintPoint(e, Counter, Counter2)
                 Counter2 = Counter2 + 1
             Loop
@@ -60,8 +60,21 @@
         End Select
     End Sub
 
+    Public Shared Sub MouseWheel(e As MouseEventArgs)
+        If Variables.ZoomFactor = 8 Then
+            If e.Delta > 0 Then
+                Variables.ZoomFactor = Variables.ZoomFactor * Math.Pow(2, e.Delta / 120)
+                Form1.Timer1.Interval = Form1.Timer1.Interval * Math.Pow(2, e.Delta / 120)
+            End If
+        Else
+            Variables.ZoomFactor = Variables.ZoomFactor * Math.Pow(2, e.Delta / 120)
+            Form1.Timer1.Interval = Form1.Timer1.Interval * Math.Pow(2, e.Delta / 120)
+        End If
+        Form1.Refresh()
+    End Sub
+
     Public Shared Sub Click(e As MouseEventArgs)
-        If Functions.ButtonPressed(e.X, e.Y, 5, 5, 100, 40) Then
+        If Functions.ButtonPressed(e.X, e.Y, 5, 5, 100, 40) = True Then
             Variables.InGoingOut = False
             Variables.InHome = True
             Form1.Refresh()
@@ -73,7 +86,7 @@
 
     Public Shared Sub TimerTick()
         If OnDown = True Then
-            Variables.MapPositiony = Variables.MapPositiony + 1
+            Variables.MapPositionY = Variables.MapPositionY + 1
         ElseIf OnUp = True Then
             Variables.MapPositiony = Variables.MapPositiony - 1
         ElseIf OnRight = True Then
