@@ -46,8 +46,6 @@
         e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 140, Form1.ClientSize.Height - 115, 25, 5)
         e.Graphics.FillRectangle(New SolidBrush(Form1.BackColor), 0, Form1.ClientSize.Height - 100, Form1.ClientSize.Width, 100)
         e.Graphics.FillRectangle(New SolidBrush(Form1.BackColor), Form1.ClientSize.Width - 100, 0, 100, Form1.ClientSize.Height)
-        e.Graphics.DrawString(Variables.MapPositionX & vbCrLf & Variables.MapPositionY, Form1.Font, Brushes.Black, 50, 100)
-        e.Graphics.DrawString(MousePositionX & vbCrLf & MousePositionY, Form1.Font, Brushes.Black, 50, 200)
         Functions.DrawPause(e)
         Functions.DrawBack(e)
     End Sub

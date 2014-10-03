@@ -148,6 +148,7 @@
                     e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
             Else
+                Functions.DrawBack(e)
                 e.Graphics.DrawString("Write name for you world.", Form1.Font3, Brushes.Black, Math.Round(Form1.ClientSize.Width / 2) - 150, Math.Round(Form1.ClientSize.Height / 2) - 80)
                 MovableObjectsX = Math.Round(Form1.ClientSize.Width / 2) - 175
                 MovableObjectsY = Math.Round(Form1.ClientSize.Height / 2) - 30
@@ -326,9 +327,9 @@
                     Form1.Refresh()
                 End If
             Else
-                If Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 175, Math.Round(Form1.ClientSize.Height / 2) - 30, 350, 50) Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 175, Math.Round(Form1.ClientSize.Height / 2) - 30, 350, 50) = True Then
                     GettingWorldNameTextboxClicked = True
-                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 50, Math.Round(Form1.ClientSize.Height / 2) + 40, 100, 50) Then
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 50, Math.Round(Form1.ClientSize.Height / 2) + 40, 100, 50) = True Then
                     If GettingWorldNameTextboxText = "" Then
                         GettingWorldNameTextboxEmpty = True
                     Else
@@ -337,6 +338,13 @@
                         Variables.GettingWorldName = False
                         Variables.InHome = True
                     End If
+                ElseIf Functions.ButtonPressed(e.X, e.Y, 5, 5, 100, 40) = True Then
+                    Variables.PlayStarting = True
+                    Variables.GettingWorldName = False
+                    GettingWorldNameTextboxClicked = True
+                    GettingWorldNameTextboxEmpty = False
+                    GettingWorldNameTextboxFull = False
+                    GettingWorldNameTextboxText = ""
                 Else
                     GettingWorldNameTextboxClicked = False
                 End If
