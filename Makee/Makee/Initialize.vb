@@ -14,6 +14,11 @@
     Dim GettingWorldNameTextboxText As String = ""
     Dim MovableObjectsX As Single
     Dim MovableObjectsY As Single
+    Public RightClickDialog As Boolean
+    Public DialogX As Single
+    Public DialogY As Single
+    Public DialogWorld As Byte
+    Public AskForDelete As Boolean
 
     Class Paint
         Public Shared Sub Paint(e As PaintEventArgs)
@@ -147,6 +152,21 @@
                     e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
                     e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
                 End If
+                If RightClickDialog = True Then
+                    e.Graphics.FillRectangle(Brushes.LightGray, DialogX, DialogY, 200, 100)
+                    e.Graphics.DrawRectangle(New Pen(Brushes.Black, 5), DialogX, DialogY, 200, 100)
+                    e.Graphics.DrawString("World " & DialogWorld, Form1.Font5, Brushes.Black, DialogX + 60, DialogY + 2)
+                    e.Graphics.DrawLine(New Pen(Brushes.Black, 5), DialogX, DialogY + 30, DialogX + 200, DialogY + 30)
+                    e.Graphics.DrawString("Delete", Form1.Font5, Brushes.Black, DialogX + 65, DialogY + 32)
+                    e.Graphics.DrawLine(New Pen(Brushes.Black, 5), DialogX, DialogY + 60, DialogX + 200, DialogY + 60)
+                End If
+                If AskForDelete = True Then
+                    MovableObjectsX = Math.Round((Form1.ClientSize.Width - 500) / 2)
+                    MovableObjectsY = Math.Round((Form1.ClientSize.Height - 250) / 2)
+                    e.Graphics.FillRectangle(Brushes.LightGray, MovableObjectsX, MovableObjectsY, 500, 250)
+                    e.Graphics.DrawRectangle(New Pen(Brushes.Black, 5), MovableObjectsX, MovableObjectsY, 500, 250)
+                    e.Graphics.DrawString("Do you really want to delete " & vbCrLf & "the World " & DialogWorld & "?", Form1.Font3, Brushes.Black, MovableObjectsX + 10, MovableObjectsY + 3)
+                End If
             Else
                 Functions.DrawBack(e)
                 e.Graphics.DrawString("Write name for you world.", Form1.Font3, Brushes.Black, Math.Round(Form1.ClientSize.Width / 2) - 150, Math.Round(Form1.ClientSize.Height / 2) - 80)
@@ -205,6 +225,46 @@
             Loop
         End Sub
 
+        Public Shared Sub CreateDialog(World As Integer, e As MouseEventArgs)
+            If e.X + 200 > Form1.ClientSize.Width Then
+                DialogX = Form1.ClientSize.Width - 200
+            Else
+                DialogX = e.X
+            End If
+            If e.Y + 100 > Form1.ClientSize.Height Then
+                DialogY = Form1.ClientSize.Height - 100
+            Else
+                DialogY = e.Y
+            End If
+            DialogWorld = World
+            RightClickDialog = True
+            Form1.Refresh()
+        End Sub
+
+        Public Shared Sub RightClick(e As MouseEventArgs)
+            If Variables.PlayStarting = True Then
+                If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
+                    CreateDialog(1, e)
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
+                    CreateDialog(2, e)
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
+                    CreateDialog(3, e)
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
+                    CreateDialog(4, e)
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
+                    CreateDialog(5, e)
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round((Form1.ClientSize.Height - 50) / 2), 100, 100) = True Then
+                    CreateDialog(6, e)
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) = True Then
+                    CreateDialog(7, e)
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 100) / 2), Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) Then
+                    CreateDialog(8, e)
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Width - 200) / 2) + 150, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2 - 50) + Math.Round((Form1.ClientSize.Height - 250) / 2) + 200, 100, 100) Then
+                    CreateDialog(9, e)
+                End If
+            End If
+        End Sub
+
         Public Shared Sub Click(e As MouseEventArgs)
             If Variables.StartScreen = True Then
                 If Functions.ButtonPressed(e.X, e.Y, Math.Round((Form1.ClientSize.Width - 400) / 2), Math.Round((Form1.ClientSize.Height - 50) / 3), 400, 50) = True Then
@@ -213,7 +273,10 @@
                     Form1.Refresh()
                 End If
             ElseIf Variables.PlayStarting = True Then
-                If Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
+                If RightClickDialog = True And Functions.ButtonPressed(e.X, e.Y, DialogX, DialogY + 30, 200, 30) = True Then
+                    AskForDelete = True
+                    Form1.Refresh()
+                ElseIf Functions.ButtonPressed(e.X, e.Y, Math.Round(((Form1.ClientSize.Width - 200) / 2 - 50) / 2) + 50, Math.Round(((Form1.ClientSize.Height - 250) / 2 - 50) / 2) + 100, 100, 100) = True Then
                     Variables.GameSlotSelected = 1
                     If World1Exist = True Then
                         Data.LoadGame()

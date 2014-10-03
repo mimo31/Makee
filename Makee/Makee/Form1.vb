@@ -32,14 +32,18 @@
     End Sub
 
     Private Sub Form1_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick
-        If Variables.StartScreen = True Or Variables.PlayStarting = True Or Variables.GettingWorldName = True Then
-            Initialize.Click.Click(e)
-        ElseIf Variables.Paused = True Then
-            Paused.Click(e)
-        ElseIf Variables.InHome = True Then
-            InHome.Click(e)
-        ElseIf Variables.InGoingOut = True Then
-            InGoingOut.Click(e)
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            If Variables.StartScreen = True Or Variables.PlayStarting = True Or Variables.GettingWorldName = True Then
+                Initialize.Click.Click(e)
+            ElseIf Variables.Paused = True Then
+                Paused.Click(e)
+            ElseIf Variables.InHome = True Then
+                InHome.Click(e)
+            ElseIf Variables.InGoingOut = True Then
+                InGoingOut.Click(e)
+            End If
+        ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
+            Initialize.Click.RightClick(e)
         End If
     End Sub
 
