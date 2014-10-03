@@ -7,10 +7,13 @@
     Public Shared OnDownRight As Boolean
     Public Shared OnUpLeft As Boolean
     Public Shared OnDownLeft As Boolean
+    Public Shared MousePositionX As Integer
+    Public Shared MousePositionY As Integer
+    Public Shared MouseX As Integer
+    Public Shared MouseY As Integer
+
 
     Public Shared Sub Paint(e As PaintEventArgs)
-        Functions.DrawPause(e)
-        Functions.DrawBack(e)
         Dim Counter As Integer
         Dim Counter2 As Integer
         Do While Counter < (Form1.ClientSize.Width - 300) / Variables.ZoomFactor
@@ -41,6 +44,12 @@
         e.Graphics.FillRectangle(Brushes.White, 115, Form1.ClientSize.Height - 115, 25, 5)
         e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 115, Form1.ClientSize.Height - 140, 5, 30)
         e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 140, Form1.ClientSize.Height - 115, 25, 5)
+        e.Graphics.FillRectangle(New SolidBrush(Form1.BackColor), 0, Form1.ClientSize.Height - 100, Form1.ClientSize.Width, 100)
+        e.Graphics.FillRectangle(New SolidBrush(Form1.BackColor), Form1.ClientSize.Width - 100, 0, 100, Form1.ClientSize.Height)
+        e.Graphics.DrawString(Variables.MapPositionX & vbCrLf & Variables.MapPositionY, Form1.Font, Brushes.Black, 50, 100)
+        e.Graphics.DrawString(MousePositionX & vbCrLf & MousePositionY, Form1.Font, Brushes.Black, 50, 200)
+        Functions.DrawPause(e)
+        Functions.DrawBack(e)
     End Sub
 
     Public Shared Sub PaintPoint(e As PaintEventArgs, x As Integer, y As Integer)
@@ -60,17 +69,42 @@
         End Select
     End Sub
 
-    Public Shared Sub MouseWheel(e As MouseEventArgs)
-        If Variables.ZoomFactor = 8 Then
-            If e.Delta > 0 Then
-                Variables.ZoomFactor = Variables.ZoomFactor * Math.Pow(2, e.Delta / 120)
-                Form1.Timer1.Interval = Form1.Timer1.Interval * Math.Pow(2, e.Delta / 120)
-            End If
-        Else
-            Variables.ZoomFactor = Variables.ZoomFactor * Math.Pow(2, e.Delta / 120)
-            Form1.Timer1.Interval = Form1.Timer1.Interval * Math.Pow(2, e.Delta / 120)
+    Public Shared Sub ZoomIn(e As MouseEventArgs)
+        If Variables.ZoomFactor < 512 Then
+            Variables.MapPositionX = Variables.MapPositionX + Math.Round(MousePositionX / 2)
+            Variables.MapPositionY = Variables.MapPositionY + Math.Round(MousePositionY / 2)
+            Variables.ZoomFactor = Variables.ZoomFactor * 2
+            Form1.Timer1.Interval = Form1.Timer1.Interval * 2
+            MousePositionX = MousePositionX / 2
         End If
-        Form1.Refresh()
+    End Sub
+
+    Public Shared Sub ZoomOut(e As MouseEventArgs)
+        If Variables.ZoomFactor > 8 Then
+            Variables.MapPositionX = Variables.MapPositionX - MousePositionX
+            Variables.MapPositionY = Variables.MapPositionY - MousePositionY
+            Variables.ZoomFactor = Variables.ZoomFactor / 2
+            Form1.Timer1.Interval = Form1.Timer1.Interval / 2
+            MousePositionX = MousePositionX * 2
+        End If
+    End Sub
+
+    Public Shared Sub MouseWheel(e As MouseEventArgs)
+        Dim Counter As Integer
+        If Functions.ButtonPressed(e.X, e.Y, 150, 150, Form1.ClientSize.Width - 300, Form1.ClientSize.Height - 300) = True Then
+            Counter = Math.Abs(e.Delta) / SystemInformation.MouseWheelScrollDelta
+            Do Until Counter = 0
+                If e.Delta < 0 Then
+                    ZoomOut(e)
+                Else
+                    ZoomIn(e)
+                End If
+                MousePositionX = (MouseX - 150) / Variables.ZoomFactor
+                MousePositionY = (MouseY - 150) / Variables.ZoomFactor
+                Counter = Counter - 1
+            Loop
+            Form1.Refresh()
+        End If
     End Sub
 
     Public Shared Sub Click(e As MouseEventArgs)
@@ -118,6 +152,10 @@
         OnDownRight = False
         OnUpLeft = False
         OnUpRight = False
+        MousePositionX = (e.X - 150) / Variables.ZoomFactor
+        MousePositionY = (e.Y - 150) / Variables.ZoomFactor
+        MouseX = e.X
+        MouseY = e.Y
         If Functions.ButtonPressed(e.X, e.Y, 150, 100, Form1.ClientSize.Width - 300, 50) = True Then
             OnUp = True
         ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, 150, 50, Form1.ClientSize.Height - 300) = True Then
