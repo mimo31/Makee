@@ -32,30 +32,6 @@
             Counter2 = 0
             Counter = Counter + 1
         Loop
-        e.Graphics.FillRectangle(Brushes.DarkRed, 100, 100, 50, 50)
-        e.Graphics.FillRectangle(Brushes.Red, 150, 100, Form1.ClientSize.Width - 300, 50)
-        e.Graphics.FillRectangle(Brushes.DarkRed, Form1.ClientSize.Width - 150, 100, 50, 50)
-        e.Graphics.FillRectangle(Brushes.Red, Form1.ClientSize.Width - 150, 150, 50, Form1.ClientSize.Height - 300)
-        e.Graphics.FillRectangle(Brushes.DarkRed, Form1.ClientSize.Width - 150, Form1.ClientSize.Height - 150, 50, 50)
-        e.Graphics.FillRectangle(Brushes.Red, 150, Form1.ClientSize.Height - 150, Form1.ClientSize.Width - 300, 50)
-        e.Graphics.FillRectangle(Brushes.DarkRed, 100, Form1.ClientSize.Height - 150, 50, 50)
-        e.Graphics.FillRectangle(Brushes.Red, 100, 150, 50, Form1.ClientSize.Height - 300)
-        e.Graphics.FillPolygon(Brushes.White, {New PointF(Form1.ClientSize.Width / 2 - 50, 140), New PointF(Form1.ClientSize.Width / 2, 120), New PointF(Form1.ClientSize.Width / 2 + 50, 140), New PointF(Form1.ClientSize.Width / 2 + 65, 140), New PointF(Form1.ClientSize.Width / 2, 110), New PointF(Form1.ClientSize.Width / 2 - 65, 140)})
-        e.Graphics.FillPolygon(Brushes.White, {New PointF(Form1.ClientSize.Width / 2 - 50, Form1.ClientSize.Height - 140), New PointF(Form1.ClientSize.Width / 2, Form1.ClientSize.Height - 120), New PointF(Form1.ClientSize.Width / 2 + 50, Form1.ClientSize.Height - 140), New PointF(Form1.ClientSize.Width / 2 + 65, Form1.ClientSize.Height - 140), New PointF(Form1.ClientSize.Width / 2, Form1.ClientSize.Height - 110), New PointF(Form1.ClientSize.Width / 2 - 65, Form1.ClientSize.Height - 140)})
-        e.Graphics.FillPolygon(Brushes.White, {New PointF(140, Form1.ClientSize.Height / 2 - 65), New PointF(110, Form1.ClientSize.Height / 2), New PointF(140, Form1.ClientSize.Height / 2 + 65), New PointF(140, Form1.ClientSize.Height / 2 + 50), New PointF(120, Form1.ClientSize.Height / 2), New PointF(140, Form1.ClientSize.Height / 2 - 50)})
-        e.Graphics.FillPolygon(Brushes.White, {New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 - 65), New PointF(Form1.ClientSize.Width - 110, Form1.ClientSize.Height / 2), New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 + 65), New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 + 50), New PointF(Form1.ClientSize.Width - 120, Form1.ClientSize.Height / 2), New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 - 50)})
-        e.Graphics.FillRectangle(Brushes.White, 110, 110, 5, 30)
-        e.Graphics.FillRectangle(Brushes.White, 115, 110, 25, 5)
-        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 115, 110, 5, 30)
-        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 140, 110, 25, 5)
-        e.Graphics.FillRectangle(Brushes.White, 110, Form1.ClientSize.Height - 140, 5, 30)
-        e.Graphics.FillRectangle(Brushes.White, 115, Form1.ClientSize.Height - 115, 25, 5)
-        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 115, Form1.ClientSize.Height - 140, 5, 30)
-        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 140, Form1.ClientSize.Height - 115, 25, 5)
-        e.Graphics.FillRectangle(New SolidBrush(Form1.BackColor), 0, Form1.ClientSize.Height - 100, Form1.ClientSize.Width, 100)
-        e.Graphics.FillRectangle(New SolidBrush(Form1.BackColor), Form1.ClientSize.Width - 100, 0, 100, Form1.ClientSize.Height)
-        Functions.DrawPause(e)
-        Functions.DrawBack(e)
         If InfoDialog = True Then
             e.Graphics.FillRectangle(Brushes.LightGray, InfoScreenX, InfoScreenY, 200, 150)
             e.Graphics.DrawRectangle(New Pen(Brushes.Black, 5), InfoScreenX, InfoScreenY, 200, 150)
@@ -82,6 +58,30 @@
             e.Graphics.DrawString("More...", Form1.Font3, Brushes.Black, InfoScreenX + 60, InfoScreenY + 90)
             e.Graphics.DrawLine(New Pen(Brushes.Black, 5), InfoScreenX, InfoScreenY + 90, InfoScreenX + 200, InfoScreenY + 90)
         End If
+        e.Graphics.FillRectangle(Brushes.DarkRed, 100, 100, 50, 50)
+        e.Graphics.FillRectangle(Brushes.Red, 150, 100, Form1.ClientSize.Width - 300, 50)
+        e.Graphics.FillRectangle(Brushes.DarkRed, Form1.ClientSize.Width - 150, 100, 50, 50)
+        e.Graphics.FillRectangle(Brushes.Red, Form1.ClientSize.Width - 150, 150, 50, Form1.ClientSize.Height - 300)
+        e.Graphics.FillRectangle(Brushes.DarkRed, Form1.ClientSize.Width - 150, Form1.ClientSize.Height - 150, 50, 50)
+        e.Graphics.FillRectangle(Brushes.Red, 150, Form1.ClientSize.Height - 150, Form1.ClientSize.Width - 300, 50)
+        e.Graphics.FillRectangle(Brushes.DarkRed, 100, Form1.ClientSize.Height - 150, 50, 50)
+        e.Graphics.FillRectangle(Brushes.Red, 100, 150, 50, Form1.ClientSize.Height - 300)
+        e.Graphics.FillPolygon(Brushes.White, {New PointF(Form1.ClientSize.Width / 2 - 50, 140), New PointF(Form1.ClientSize.Width / 2, 120), New PointF(Form1.ClientSize.Width / 2 + 50, 140), New PointF(Form1.ClientSize.Width / 2 + 65, 140), New PointF(Form1.ClientSize.Width / 2, 110), New PointF(Form1.ClientSize.Width / 2 - 65, 140)})
+        e.Graphics.FillPolygon(Brushes.White, {New PointF(Form1.ClientSize.Width / 2 - 50, Form1.ClientSize.Height - 140), New PointF(Form1.ClientSize.Width / 2, Form1.ClientSize.Height - 120), New PointF(Form1.ClientSize.Width / 2 + 50, Form1.ClientSize.Height - 140), New PointF(Form1.ClientSize.Width / 2 + 65, Form1.ClientSize.Height - 140), New PointF(Form1.ClientSize.Width / 2, Form1.ClientSize.Height - 110), New PointF(Form1.ClientSize.Width / 2 - 65, Form1.ClientSize.Height - 140)})
+        e.Graphics.FillPolygon(Brushes.White, {New PointF(140, Form1.ClientSize.Height / 2 - 65), New PointF(110, Form1.ClientSize.Height / 2), New PointF(140, Form1.ClientSize.Height / 2 + 65), New PointF(140, Form1.ClientSize.Height / 2 + 50), New PointF(120, Form1.ClientSize.Height / 2), New PointF(140, Form1.ClientSize.Height / 2 - 50)})
+        e.Graphics.FillPolygon(Brushes.White, {New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 - 65), New PointF(Form1.ClientSize.Width - 110, Form1.ClientSize.Height / 2), New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 + 65), New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 + 50), New PointF(Form1.ClientSize.Width - 120, Form1.ClientSize.Height / 2), New PointF(Form1.ClientSize.Width - 140, Form1.ClientSize.Height / 2 - 50)})
+        e.Graphics.FillRectangle(Brushes.White, 110, 110, 5, 30)
+        e.Graphics.FillRectangle(Brushes.White, 115, 110, 25, 5)
+        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 115, 110, 5, 30)
+        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 140, 110, 25, 5)
+        e.Graphics.FillRectangle(Brushes.White, 110, Form1.ClientSize.Height - 140, 5, 30)
+        e.Graphics.FillRectangle(Brushes.White, 115, Form1.ClientSize.Height - 115, 25, 5)
+        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 115, Form1.ClientSize.Height - 140, 5, 30)
+        e.Graphics.FillRectangle(Brushes.White, Form1.ClientSize.Width - 140, Form1.ClientSize.Height - 115, 25, 5)
+        e.Graphics.FillRectangle(New SolidBrush(Form1.BackColor), 0, Form1.ClientSize.Height - 100, Form1.ClientSize.Width, 100)
+        e.Graphics.FillRectangle(New SolidBrush(Form1.BackColor), Form1.ClientSize.Width - 100, 0, 100, Form1.ClientSize.Height)
+        Functions.DrawPause(e)
+        Functions.DrawBack(e)
     End Sub
 
     Public Shared Sub PaintPoint(e As PaintEventArgs, x As Integer, y As Integer)
@@ -251,6 +251,10 @@
     End Sub
 
     Public Shared Sub MouseMove(e As MouseEventArgs)
+        MousePositionX = (e.X - 150) / Variables.ZoomFactor
+        MousePositionY = (e.Y - 150) / Variables.ZoomFactor
+        MouseX = e.X
+        MouseY = e.Y
         OnUp = False
         OnRight = False
         OnDown = False

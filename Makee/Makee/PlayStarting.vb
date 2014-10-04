@@ -36,7 +36,7 @@
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
             e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-            e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game1\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
+            e.Graphics.DrawString(StringToWorldButton(e, Functions.SuperRead("C:\Makee\SavedGames\Game1\Name.txt")), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
         Else
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
             e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
@@ -48,7 +48,7 @@
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
             e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-            e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game2\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
+            e.Graphics.DrawString(StringToWorldButton(e, Functions.SuperRead("C:\Makee\SavedGames\Game2\Name.txt")), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
         Else
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
             e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
@@ -60,7 +60,7 @@
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
             e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-            e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game3\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
+            e.Graphics.DrawString(StringToWorldButton(e, Functions.SuperRead("C:\Makee\SavedGames\Game3\Name.txt")), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
         Else
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
             e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
@@ -72,7 +72,7 @@
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
             e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-            e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game4\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
+            e.Graphics.DrawString(StringToWorldButton(e, Functions.SuperRead("C:\Makee\SavedGames\Game4\Name.txt")), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
         Else
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
             e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
@@ -84,7 +84,7 @@
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
             e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-            e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game5\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
+            e.Graphics.DrawString(StringToWorldButton(e, Functions.SuperRead("C:\Makee\SavedGames\Game5\Name.txt")), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
         Else
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
             e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
@@ -96,7 +96,7 @@
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
             e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-            e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game6\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
+            e.Graphics.DrawString(StringToWorldButton(e, Functions.SuperRead("C:\Makee\SavedGames\Game6\Name.txt")), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
         Else
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
             e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
@@ -108,7 +108,7 @@
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
             e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-            e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game7\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
+            e.Graphics.DrawString(StringToWorldButton(e, Functions.SuperRead("C:\Makee\SavedGames\Game7\Name.txt")), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
         Else
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
             e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
@@ -120,7 +120,7 @@
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
             e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-            e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game8\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
+            e.Graphics.DrawString(StringToWorldButton(e, Functions.SuperRead("C:\Makee\SavedGames\Game8\Name.txt")), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
         Else
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
             e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
@@ -132,7 +132,7 @@
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX, MovableObjectsY + 40, 100, 20)
             e.Graphics.FillRectangle(Brushes.Yellow, MovableObjectsX + 40, MovableObjectsY, 20, 100)
             e.Graphics.DrawRectangle(Form1.Pen1, MovableObjectsX, MovableObjectsY, 100, 100)
-            e.Graphics.DrawString(Functions.SuperRead("C:\Makee\SavedGames\Game9\Name.txt"), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
+            e.Graphics.DrawString(StringToWorldButton(e, Functions.SuperRead("C:\Makee\SavedGames\Game9\Name.txt")), Form1.Font5, Brushes.Blue, MovableObjectsX + 10, MovableObjectsY + 70)
         Else
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX, MovableObjectsY, 100, 100)
             e.Graphics.DrawString("Empty", Form1.Font3, Brushes.White, MovableObjectsX + 10, MovableObjectsY + 60)
@@ -140,7 +140,7 @@
         If RightClickDialog = True Then
             e.Graphics.FillRectangle(Brushes.LightGray, DialogX, DialogY, 200, 100)
             e.Graphics.DrawRectangle(New Pen(Brushes.Black, 5), DialogX, DialogY, 200, 100)
-            e.Graphics.DrawString("World " & DialogWorld, Form1.Font5, Brushes.Black, DialogX + 60, DialogY + 2)
+            e.Graphics.DrawString(My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & DialogWorld & "\Name.txt"), Form1.Font5, Brushes.Black, DialogX + (200 - e.Graphics.MeasureString(My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & DialogWorld & "\Name.txt"), Form1.Font5).Width) / 2, DialogY + 2)
             e.Graphics.DrawLine(New Pen(Brushes.Black, 5), DialogX, DialogY + 30, DialogX + 200, DialogY + 30)
             e.Graphics.DrawString("Delete", Form1.Font5, Brushes.Black, DialogX + 65, DialogY + 32)
             e.Graphics.DrawLine(New Pen(Brushes.Black, 5), DialogX, DialogY + 60, DialogX + 200, DialogY + 60)
@@ -150,13 +150,25 @@
             MovableObjectsY = Math.Round((Form1.ClientSize.Height - 250) / 2)
             e.Graphics.FillRectangle(Brushes.LightGray, MovableObjectsX, MovableObjectsY, 500, 250)
             e.Graphics.DrawRectangle(New Pen(Brushes.Black, 5), MovableObjectsX, MovableObjectsY, 500, 250)
-            e.Graphics.DrawString("Do you really want to delete " & vbCrLf & "the World " & DialogWorld & "?", Form1.Font3, Brushes.Black, MovableObjectsX + 10, MovableObjectsY + 3)
+            e.Graphics.DrawString("Do you really want to delete " & vbCrLf & "the world " & My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & DialogWorld & "\Name.txt") & "?", Form1.Font3, Brushes.Black, MovableObjectsX + 10, MovableObjectsY + 3)
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX + 20, MovableObjectsY + 170, 100, 50)
             e.Graphics.FillRectangle(Brushes.Black, MovableObjectsX + 380, MovableObjectsY + 170, 100, 50)
             e.Graphics.DrawString("Yes", Form1.Font1, Brushes.White, MovableObjectsX + 25, MovableObjectsY + 173)
             e.Graphics.DrawString("No", Form1.Font1, Brushes.White, MovableObjectsX + 397, MovableObjectsY + 173)
         End If
     End Sub
+
+    Public Shared Function StringToWorldButton(e As PaintEventArgs, InputString As String) As String
+        Dim Counter As Integer = 1
+        If e.Graphics.MeasureString(InputString, Form1.Font5).Width < 100 Then
+            Return InputString
+        Else
+            Do While e.Graphics.MeasureString(InputString.Substring(0, Counter) & "...", Form1.Font5).Width < 100
+                Counter = Counter + 1
+            Loop
+            Return InputString.Substring(0, Counter - 1) & "..."
+        End If
+    End Function
 
     Public Shared Sub Click(e As MouseEventArgs)
         If AskForDelete = True Then
