@@ -85,4 +85,10 @@
             PlayStarting.MouseMove(e)
         End If
     End Sub
+
+    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If Variables.StartScreen = False And Variables.PlayStarting = False And Variables.GettingWorldName = False Then
+            Data.SaveGame()
+        End If
+    End Sub
 End Class

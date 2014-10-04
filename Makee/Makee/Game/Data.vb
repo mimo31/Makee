@@ -251,13 +251,42 @@
     Public Shared Sub SaveGame()
         My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapX.txt", Variables.MapPositionX, False)
         My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapY.txt", Variables.MapPositionY, False)
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\PlayerX.txt", Variables.PlayerPositionX, False)
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\PlayerY.txt", Variables.PlayerPositionY, False)
         My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Zoom.txt", Variables.ZoomFactor, False)
     End Sub
 
     Public Shared Sub LoadGame()
         Variables.MapPositionX = My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapX.txt")
         Variables.MapPositionY = My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapY.txt")
+        Variables.PlayerPositionX = My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\PlayerX.txt")
+        Variables.PlayerPositionY = My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\PlayerY.txt")
         Variables.ZoomFactor = My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Zoom.txt")
+    End Sub
+
+    Public Shared Sub CreateWorld(Name As String)
+        Dim Counter As Integer
+        My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks")
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Name.txt", Name, False)
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapX.txt", 0, False)
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapY.txt", 0, False)
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\PlayerX.txt", 0, False)
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\PlayerY.txt", 0, False)
+        My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Zoom.txt", 16, False)
+        Variables.ZoomFactor = 16
+        Data.GenChunk(0, 0)
+        Do
+            If Data.GetValue(Counter, 0) = 5 Then
+            Else
+                Variables.MapPositionX = Counter - 10
+                Variables.MapPositionY = -10
+                Variables.PlayerPositionX = Counter
+                Variables.PlayerPositionY = 0
+                Data.SetValue(Counter, 0, 6)
+                Exit Do
+            End If
+            Counter = Counter + 1
+        Loop
     End Sub
 
     Public Shared Sub QuitGame()

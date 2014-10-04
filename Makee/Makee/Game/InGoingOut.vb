@@ -11,7 +11,8 @@
     Public Shared MousePositionY As Integer
     Public Shared MouseX As Integer
     Public Shared MouseY As Integer
-
+    Public Shared MovableObjectsX As Single
+    Public Shared MovableObjectsY As Single
 
     Public Shared Sub Paint(e As PaintEventArgs)
         Dim Counter As Integer
@@ -65,6 +66,11 @@
             Case 6
                 e.Graphics.DrawImage(New Bitmap(My.Resources.Base1, Variables.ZoomFactor, Variables.ZoomFactor), 150 + Variables.ZoomFactor * x, 150 + Variables.ZoomFactor * y)
         End Select
+        If Variables.MapPositionX + x = Variables.PlayerPositionX And Variables.MapPositionY + y = Variables.PlayerPositionY Then
+            MovableObjectsX = Math.Round(150 + Variables.ZoomFactor * (0.03125 + x))
+            MovableObjectsY = Math.Round(150 + Variables.ZoomFactor * (0.03125 + y))
+            e.Graphics.DrawImage(New Bitmap(My.Resources.Player1, Math.Round(Variables.ZoomFactor * 15 / 16), Math.Round(Variables.ZoomFactor * 15 / 16)), MovableObjectsX, MovableObjectsY)
+        End If
     End Sub
 
     Public Shared Sub ZoomIn(e As MouseEventArgs)
@@ -174,7 +180,7 @@
     End Sub
 
     Public Shared Sub Load()
-        Form1.Timer1.Interval = 40
+        Form1.Timer1.Interval = 20 * Variables.ZoomFactor / 16
         Form1.Timer1.Start()
         Form1.MinimumSize = New Size(800, 800)
         Variables.InGoingOut = True

@@ -1,6 +1,7 @@
 ﻿Public Class Paused
     Public Shared MovableObjectX As Single
     Public Shared MovableObjectY As Single
+
     Public Shared Sub Paint(e As PaintEventArgs)
         Form1.MinimumSize = New Size(700, 800)
         Functions.DrawBack(e)

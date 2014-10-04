@@ -39,21 +39,6 @@
         End If
     End Sub
 
-    Public Shared Sub CreateFirstDataStructures()
-        Dim Counter As Integer
-        My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks")
-        Variables.ZoomFactor = 16
-        Data.GenChunk(0, 0)
-        Do
-            If Data.GetValue(Counter, 0) = 5 Then
-            Else
-                Data.SetValue(Counter, 0, 6)
-                Exit Do
-            End If
-            Counter = Counter + 1
-        Loop
-    End Sub
-
     Public Shared Sub Click(e As MouseEventArgs)
         If Functions.ButtonPressed(e.X, e.Y, Math.Round(Form1.ClientSize.Width / 2) - 175, Math.Round(Form1.ClientSize.Height / 2) - 30, 350, 50) = True Then
             GettingWorldNameTextboxClicked = True
@@ -61,8 +46,7 @@
             If GettingWorldNameTextboxText = "" Then
                 GettingWorldNameTextboxEmpty = True
             Else
-                CreateFirstDataStructures()
-                Functions.SuperWrite("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Name.txt", GettingWorldNameTextboxText, True)
+                Data.CreateWorld(GettingWorldNameTextboxText)
                 Variables.GettingWorldName = False
                 Variables.InHome = True
             End If
