@@ -81,6 +81,8 @@
     Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
         If Variables.InGoingOut = True Then
             InGoingOut.MouseMove(e)
+        ElseIf Variables.PlayStarting = True Then
+            PlayStarting.MouseMove(e)
         End If
     End Sub
 End Class

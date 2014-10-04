@@ -243,6 +243,11 @@
         End If
     End Sub
 
+    Public Shared Sub DeleteWorld(World As Byte)
+        My.Computer.FileSystem.DeleteDirectory("C:\Makee\SavedGames\Game" & World, FileIO.DeleteDirectoryOption.DeleteAllContents)
+        My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game" & World)
+    End Sub
+
     Public Shared Sub SaveGame()
         My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapX.txt", Variables.MapPositionX, False)
         My.Computer.FileSystem.WriteAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\MapY.txt", Variables.MapPositionY, False)
