@@ -264,6 +264,25 @@
         Variables.ZoomFactor = My.Computer.FileSystem.ReadAllText("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Zoom.txt")
     End Sub
 
+    Public Shared Function GetName(Id As UShort) As String
+        Select Case Id
+            Case 1
+                Return "Rock"
+            Case 2
+                Return "Forest"
+            Case 3
+                Return "Meadow"
+            Case 4
+                Return "Plain"
+            Case 5
+                Return "Water"
+            Case 6
+                Return "Base lvl.1"
+            Case Else
+                Return "Unknown"
+        End Select
+    End Function
+
     Public Shared Sub CreateWorld(Name As String)
         Dim Counter As Integer
         My.Computer.FileSystem.CreateDirectory("C:\Makee\SavedGames\Game" & Variables.GameSlotSelected & "\Map\Chunks")

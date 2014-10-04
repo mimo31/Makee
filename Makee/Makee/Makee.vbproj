@@ -102,6 +102,7 @@
     <Compile Include="Game\InMachines.vb" />
     <Compile Include="Game\InMake.vb" />
     <Compile Include="Game\InWarehouse.vb" />
+    <Compile Include="Game\MoreClasses\More1.vb" />
     <Compile Include="Game\Paused.vb" />
     <Compile Include="GettingWorldName.vb" />
     <Compile Include="Initialize.vb" />

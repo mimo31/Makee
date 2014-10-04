@@ -20,4 +20,5 @@ Public Class Variables
     Public Shared PlayerPositionY As Integer
     Public Shared ZoomFactor As Integer
     Public Shared R As New Random
+    Public Shared MoreClass As UShort
 End Class

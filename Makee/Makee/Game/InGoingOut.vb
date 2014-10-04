@@ -13,6 +13,13 @@
     Public Shared MouseY As Integer
     Public Shared MovableObjectsX As Single
     Public Shared MovableObjectsY As Single
+    Public Shared InfoDialog As Boolean
+    Public Shared InfoScreenX As Single
+    Public Shared InfoScreenY As Single
+    Public Shared InfoMapX As Integer
+    Public Shared InfoMapY As Integer
+    Public Shared InfoTheoX As Integer
+    Public Shared InfoTheoY As Integer
 
     Public Shared Sub Paint(e As PaintEventArgs)
         Dim Counter As Integer
@@ -49,6 +56,32 @@
         e.Graphics.FillRectangle(New SolidBrush(Form1.BackColor), Form1.ClientSize.Width - 100, 0, 100, Form1.ClientSize.Height)
         Functions.DrawPause(e)
         Functions.DrawBack(e)
+        If InfoDialog = True Then
+            e.Graphics.FillRectangle(Brushes.LightGray, InfoScreenX, InfoScreenY, 200, 150)
+            e.Graphics.DrawRectangle(New Pen(Brushes.Black, 5), InfoScreenX, InfoScreenY, 200, 150)
+            e.Graphics.FillRectangle(Brushes.Black, InfoScreenX, InfoScreenY + 120, 200, 30)
+            e.Graphics.DrawString("Close", Form1.Font3, Brushes.White, InfoScreenX + 60, InfoScreenY + 120)
+            Counter = 1
+            If e.Graphics.MeasureString(Data.GetName(Data.GetValue(InfoMapX, InfoMapY)), Form1.Font3).Width < 200 Then
+                e.Graphics.DrawString(Data.GetName(Data.GetValue(InfoMapX, InfoMapY)), Form1.Font3, Brushes.Black, InfoScreenX + (200 - e.Graphics.MeasureString(Data.GetName(Data.GetValue(InfoMapX, InfoMapY)), Form1.Font3).Width) / 2, InfoScreenY)
+            Else
+                Do While e.Graphics.MeasureString(Data.GetName(Data.GetValue(InfoMapX, InfoMapY)).Substring(0, Counter), Form1.Font3).Width + e.Graphics.MeasureString("...", Form1.Font3).Width < 200
+                    Counter = Counter + 1
+                Loop
+                e.Graphics.DrawString(Data.GetName(Data.GetValue(InfoMapX, InfoMapY)).Substring(0, Counter - 1) & "...", Form1.Font3, Brushes.Black, InfoScreenX + (200 - e.Graphics.MeasureString(Data.GetName(Data.GetValue(InfoMapX, InfoMapY)).Substring(0, Counter - 1) & "...", Form1.Font3).Width) / 2, InfoScreenY)
+            End If
+            Counter = 1
+            If e.Graphics.MeasureString("(" & InfoMapX & ", " & InfoMapY & ")", Form1.Font3).Width < 200 Then
+                e.Graphics.DrawString("(" & InfoMapX & ", " & InfoMapY & ")", Form1.Font3, Brushes.Black, InfoScreenX + (200 - e.Graphics.MeasureString("(" & InfoMapX & ", " & InfoMapY & ")", Form1.Font3).Width) / 2, InfoScreenY + 30)
+            Else
+                Do While e.Graphics.MeasureString("(" & InfoMapX & ", " & InfoMapY & ")".Substring(0, Counter), Form1.Font3).Width + e.Graphics.MeasureString("...", Form1.Font3).Width < 200
+                    Counter = Counter + 1
+                Loop
+                e.Graphics.DrawString("(" & InfoMapX & ", " & InfoMapY & ")".Substring(0, Counter - 1) & "...", Form1.Font3, Brushes.Black, InfoScreenX + (200 - e.Graphics.MeasureString("(" & InfoMapX & ", " & InfoMapY & ")".Substring(0, Counter - 1) & "...", Form1.Font3).Width) / 2, InfoScreenY)
+            End If
+            e.Graphics.DrawString("More...", Form1.Font3, Brushes.Black, InfoScreenX + 60, InfoScreenY + 90)
+            e.Graphics.DrawLine(New Pen(Brushes.Black, 5), InfoScreenX, InfoScreenY + 90, InfoScreenX + 200, InfoScreenY + 90)
+        End If
     End Sub
 
     Public Shared Sub PaintPoint(e As PaintEventArgs, x As Integer, y As Integer)
@@ -94,56 +127,126 @@
     End Sub
 
     Public Shared Sub MouseWheel(e As MouseEventArgs)
-        Dim Counter As Integer
-        If Functions.ButtonPressed(e.X, e.Y, 150, 150, Form1.ClientSize.Width - 300, Form1.ClientSize.Height - 300) = True Then
-            Counter = Math.Abs(e.Delta) / SystemInformation.MouseWheelScrollDelta
-            Do Until Counter = 0
-                If e.Delta < 0 Then
-                    ZoomOut(e)
-                Else
-                    ZoomIn(e)
-                End If
-                MousePositionX = (MouseX - 150) / Variables.ZoomFactor
-                MousePositionY = (MouseY - 150) / Variables.ZoomFactor
-                Counter = Counter - 1
-            Loop
-            Form1.Refresh()
+        If InfoDialog = False Then
+            Dim Counter As Integer
+            If Functions.ButtonPressed(e.X, e.Y, 150, 150, Form1.ClientSize.Width - 300, Form1.ClientSize.Height - 300) = True Then
+                Counter = Math.Abs(e.Delta) / SystemInformation.MouseWheelScrollDelta
+                Do Until Counter = 0
+                    If e.Delta < 0 Then
+                        ZoomOut(e)
+                    Else
+                        ZoomIn(e)
+                    End If
+                    MousePositionX = (MouseX - 150) / Variables.ZoomFactor
+                    MousePositionY = (MouseY - 150) / Variables.ZoomFactor
+                    Counter = Counter - 1
+                Loop
+                Form1.Refresh()
+            End If
+        End If
+    End Sub
+
+    Public Shared Sub ShowMoreClass(Id As UShort)
+        Select Case Id
+            Case 1
+                More1.Load(InfoMapX, InfoMapY)
+        End Select
+        InGoingOut.Close()
+    End Sub
+
+    Public Shared Sub CountPracticalCoordinates()
+        If InfoTheoX > 150 And Form1.ClientSize.Width - 350 > InfoTheoX Then
+            InfoScreenX = InfoTheoX
+        ElseIf InfoTheoX > 150 Then
+            InfoScreenX = Form1.ClientSize.Width - 350
+        Else
+            InfoScreenX = 150
+        End If
+        If InfoTheoY > 150 And Form1.ClientSize.Height - 300 > InfoTheoY Then
+            InfoScreenY = InfoTheoY
+        ElseIf InfoTheoY > 150 Then
+            InfoScreenY = Form1.ClientSize.Height - 300
+        Else
+            InfoScreenY = 150
         End If
     End Sub
 
     Public Shared Sub Click(e As MouseEventArgs)
-        If Functions.ButtonPressed(e.X, e.Y, 5, 5, 100, 40) = True Then
-            Variables.InGoingOut = False
+        If Functions.ButtonPressed(e.X, e.Y, InfoScreenX, InfoScreenY, 200, 150) = True And InfoDialog = True Then
+            If Functions.ButtonPressed(e.X, e.Y, InfoScreenX, InfoScreenY + 120, 150, 30) = True Then
+                InfoDialog = False
+                Form1.Refresh()
+            ElseIf Functions.ButtonPressed(e.X, e.Y, InfoScreenX, InfoScreenY + 90, 150, 30) = True Then
+                ShowMoreClass(Data.GetValue(InfoMapX, InfoMapY))
+            End If
+        ElseIf Functions.ButtonPressed(e.X, e.Y, 5, 5, 100, 40) = True Then
+            InGoingOut.Close()
             Variables.InHome = True
             Form1.Refresh()
         ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 60, 0, 60, 60) = True Then
             Variables.Paused = True
             Form1.Refresh()
+        ElseIf Functions.ButtonPressed(e.X, e.Y, 150, 150, Form1.ClientSize.Width - 300, Form1.ClientSize.Height - 300) = True Then
+            InfoDialog = True
+            InfoTheoX = e.X
+            InfoTheoY = e.Y
+            CountPracticalCoordinates()
+            InfoMapX = Math.Floor((e.X - 150) / Variables.ZoomFactor) + Variables.MapPositionX
+            InfoMapY = Math.Floor((e.Y - 150) / Variables.ZoomFactor) + Variables.MapPositionY
         End If
     End Sub
 
     Public Shared Sub TimerTick()
         If OnDown = True Then
+            If InfoDialog = True Then
+                InfoTheoY = InfoTheoY - Variables.ZoomFactor
+            End If
             Variables.MapPositionY = Variables.MapPositionY + 1
         ElseIf OnUp = True Then
-            Variables.MapPositiony = Variables.MapPositiony - 1
+            If InfoDialog = True Then
+                InfoTheoY = InfoTheoY + Variables.ZoomFactor
+            End If
+            Variables.MapPositionY = Variables.MapPositionY - 1
         ElseIf OnRight = True Then
+            If InfoDialog = True Then
+                InfoTheoX = InfoTheoX - Variables.ZoomFactor
+            End If
             Variables.MapPositionX = Variables.MapPositionX + 1
         ElseIf OnLeft = True Then
+            If InfoDialog = True Then
+                InfoTheoX = InfoTheoX + Variables.ZoomFactor
+            End If
             Variables.MapPositionX = Variables.MapPositionX - 1
         ElseIf OnUpLeft = True Then
-            Variables.MapPositiony = Variables.MapPositiony - 1
+            If InfoDialog = True Then
+                InfoTheoY = InfoTheoY + Variables.ZoomFactor
+                InfoTheoX = InfoTheoX + Variables.ZoomFactor
+            End If
+            Variables.MapPositionY = Variables.MapPositionY - 1
             Variables.MapPositionX = Variables.MapPositionX - 1
         ElseIf OnDownLeft = True Then
-            Variables.MapPositiony = Variables.MapPositiony + 1
+            If InfoDialog = True Then
+                InfoTheoY = InfoTheoY - Variables.ZoomFactor
+                InfoTheoX = InfoTheoX + Variables.ZoomFactor
+            End If
+            Variables.MapPositionY = Variables.MapPositionY + 1
             Variables.MapPositionX = Variables.MapPositionX - 1
         ElseIf OnUpRight = True Then
-            Variables.MapPositiony = Variables.MapPositiony - 1
+            If InfoDialog = True Then
+                InfoTheoY = InfoTheoY + Variables.ZoomFactor
+                InfoTheoX = InfoTheoX - Variables.ZoomFactor
+            End If
+            Variables.MapPositionY = Variables.MapPositionY - 1
             Variables.MapPositionX = Variables.MapPositionX + 1
         ElseIf OnDownRight = True Then
-            Variables.MapPositiony = Variables.MapPositiony + 1
+            If InfoDialog = True Then
+                InfoTheoY = InfoTheoY - Variables.ZoomFactor
+                InfoTheoX = InfoTheoX - Variables.ZoomFactor
+            End If
+            Variables.MapPositionY = Variables.MapPositionY + 1
             Variables.MapPositionX = Variables.MapPositionX + 1
         End If
+        CountPracticalCoordinates()
         Form1.Refresh()
     End Sub
 
@@ -156,26 +259,24 @@
         OnDownRight = False
         OnUpLeft = False
         OnUpRight = False
-        MousePositionX = (e.X - 150) / Variables.ZoomFactor
-        MousePositionY = (e.Y - 150) / Variables.ZoomFactor
-        MouseX = e.X
-        MouseY = e.Y
-        If Functions.ButtonPressed(e.X, e.Y, 150, 100, Form1.ClientSize.Width - 300, 50) = True Then
-            OnUp = True
-        ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, 150, 50, Form1.ClientSize.Height - 300) = True Then
-            OnRight = True
-        ElseIf Functions.ButtonPressed(e.X, e.Y, 150, Form1.ClientSize.Height - 150, Form1.ClientSize.Width - 300, 50) = True Then
-            OnDown = True
-        ElseIf Functions.ButtonPressed(e.X, e.Y, 100, 150, 50, Form1.ClientSize.Height - 300) = True Then
-            OnLeft = True
-        ElseIf Functions.ButtonPressed(e.X, e.Y, 100, 100, 50, 50) = True Then
-            OnUpLeft = True
-        ElseIf Functions.ButtonPressed(e.X, e.Y, 100, Form1.ClientSize.Height - 150, 50, 50) = True Then
-            OnDownLeft = True
-        ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, 100, 50, 50) = True Then
-            OnUpRight = True
-        ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, Form1.ClientSize.Height - 150, 50, 50) = True Then
-            OnDownRight = True
+        If Functions.ButtonPressed(e.X, e.Y, InfoScreenX, InfoScreenY, 200, 150) = False Or InfoDialog = False Then
+            If Functions.ButtonPressed(e.X, e.Y, 150, 100, Form1.ClientSize.Width - 300, 50) = True Then
+                OnUp = True
+            ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, 150, 50, Form1.ClientSize.Height - 300) = True Then
+                OnRight = True
+            ElseIf Functions.ButtonPressed(e.X, e.Y, 150, Form1.ClientSize.Height - 150, Form1.ClientSize.Width - 300, 50) = True Then
+                OnDown = True
+            ElseIf Functions.ButtonPressed(e.X, e.Y, 100, 150, 50, Form1.ClientSize.Height - 300) = True Then
+                OnLeft = True
+            ElseIf Functions.ButtonPressed(e.X, e.Y, 100, 100, 50, 50) = True Then
+                OnUpLeft = True
+            ElseIf Functions.ButtonPressed(e.X, e.Y, 100, Form1.ClientSize.Height - 150, 50, 50) = True Then
+                OnDownLeft = True
+            ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, 100, 50, 50) = True Then
+                OnUpRight = True
+            ElseIf Functions.ButtonPressed(e.X, e.Y, Form1.ClientSize.Width - 150, Form1.ClientSize.Height - 150, 50, 50) = True Then
+                OnDownRight = True
+            End If
         End If
     End Sub
 
