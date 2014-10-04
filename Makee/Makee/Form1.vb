@@ -15,10 +15,14 @@
     End Sub
 
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
-        If Variables.StartScreen = True Or Variables.GettingWorldName = True Or Variables.PlayStarting Then
-            Initialize.Paint.Paint(e)
+        If Variables.StartScreen = True Then
+            StartScreen.Paint(e)
+        ElseIf Variables.PlayStarting = True Then
+            PlayStarting.Paint(e)
+        ElseIf Variables.GettingWorldName = True Then
+            GettingWorldName.Paint(e)
         ElseIf Variables.Paused = True Then
-                Paused.Paint(e)
+            Paused.Paint(e)
         ElseIf Variables.InHome = True Then
             InHome.Paint(e)
         ElseIf Variables.InGoingOut = True Then
@@ -27,14 +31,18 @@
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Initialize.Initialize.Initialize()
+        Initialize.Initialize()
         DoubleBuffered = True
     End Sub
 
     Private Sub Form1_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick
         If e.Button = Windows.Forms.MouseButtons.Left Then
-            If Variables.StartScreen = True Or Variables.PlayStarting = True Or Variables.GettingWorldName = True Then
-                Initialize.Click.Click(e)
+            If Variables.StartScreen = True Then
+                StartScreen.Click(e)
+            ElseIf Variables.PlayStarting = True Then
+                PlayStarting.Click(e)
+            ElseIf Variables.GettingWorldName = True Then
+                GettingWorldName.Click(e)
             ElseIf Variables.Paused = True Then
                 Paused.Click(e)
             ElseIf Variables.InHome = True Then
@@ -43,13 +51,15 @@
                 InGoingOut.Click(e)
             End If
         ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
-            Initialize.Click.RightClick(e)
+            If Variables.PlayStarting = True Then
+                PlayStarting.RightClick(e)
+            End If
         End If
     End Sub
 
     Private Sub Form1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
         If Variables.GettingWorldName = True Then
-            Initialize.Keys.KeyUp(e)
+            GettingWorldName.KeyUp(e)
         End If
     End Sub
 
