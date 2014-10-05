@@ -147,11 +147,11 @@
     End Sub
 
     Public Shared Sub ShowMoreClass(Id As UShort)
+        InGoingOut.Close()
         Select Case Id
             Case 1
                 More1.Load(InfoMapX, InfoMapY)
         End Select
-        InGoingOut.Close()
     End Sub
 
     Public Shared Sub CountPracticalCoordinates()

@@ -6,7 +6,6 @@
     Public Font5 As New System.Drawing.Font(Font.Bold, 15)
     Public Pen1 As New System.Drawing.Pen(Color.Black, 6)
     Public Pen2 As New Pen(Color.Red, 3)
-    Dim ReadedText As String
 
     Private Sub Form1_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
         If Variables.InGoingOut = True Then
@@ -27,6 +26,8 @@
             InHome.Paint(e)
         ElseIf Variables.InGoingOut = True Then
             InGoingOut.Paint(e)
+        ElseIf Variables.MoreClass = 1 Then
+            More1.Paint(e)
         End If
     End Sub
 
@@ -49,6 +50,8 @@
                 InHome.Click(e)
             ElseIf Variables.InGoingOut = True Then
                 InGoingOut.Click(e)
+            ElseIf Variables.MoreClass = 1 Then
+                More1.Click(e)
             End If
         ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
             If Variables.PlayStarting = True Then
